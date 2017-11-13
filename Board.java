@@ -10,6 +10,7 @@ import javafx.animation.Interpolator;
 import javafx.animation.PathTransition;
 import javafx.animation.RotateTransition;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -59,23 +60,21 @@ public class Board implements Initializable
             	c.cmass=c.get_Cmass();
             	Group g=new Group();
             	
-            	
-            	//g.setTranslateX(x);
-            	//g.setTranslateY(y);
             	rotate(g);
             	
             	//MakeSphere(g,Color.RED,x+22.5,y+22.5);
             	//MakeSphere(g,Color.RED,x+10,y);
             	//MakeSphere(g,Color.RED,x+5,y+10);
+            	  
             	r.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
         			@Override
         			public void handle(MouseEvent e)
         			{
         				add(g,Color.RED,e.getSceneX(),e.getSceneY());
-        				System.out.println("hello");
+        				/*System.out.println("hello");
         				System.out.println("X = "+e.getSceneX()+" Y = "+e.getSceneY());
         				System.out.println(x+" "+y);
-        			}
+        			*/}
         		});
             	c.color=Color.RED;
             	c.g=g;
@@ -164,9 +163,10 @@ public class Board implements Initializable
 			explode(i,j);
 		}
 	}
+	
 	public void explode(int i,int j)
 	{
-		
+		cell[i][j].g.getChildren().removeAll();
 		int i1[]=new int[4];
 		int j1[]=new int[4];
 	
@@ -184,16 +184,14 @@ public class Board implements Initializable
 		Sphere sp[]=new Sphere[4];
 		
 		
-		
-		
-		
 		for(int k=0;k<4;k++)
 		{
 			System.out.println(i1[k]+" "+j1[k]);
 			if((i1[k]>=0 && i1[k]<=8) && (j1[k]>=0 && j1[k]<=5))
 			{
-				cell[i][j].g.getChildren().remove(0);
 				
+				
+				cell[i][j].g.getChildren().remove(0);
 				Line l=new Line(cell[i][j].x+22.5,cell[i][j].y+22.5,cell[i1[k]][j1[k]].x+22.5,cell[i1[k]][j1[k]].y+22.5);
 				//Line l=new Line(cell[i][j].x+22.5,cell[i][j].y+22.5,cell[i-1][j].x+22.5,cell[i-1][j].y+22.5);
 				l.setStroke(Color.BLUE);
@@ -204,31 +202,24 @@ public class Board implements Initializable
 				
 				
 				pane.getChildren().add(sp[k]);
+				
 				PathTransition transition=new PathTransition();
+				
 				transition.setNode(sp[k]);
 				transition.setDuration(Duration.seconds(0.5));
 				transition.setPath(l);
 				transition.setCycleCount(1);
+				transition.setOnFinished(new EventHandler<ActionEvent>() {
+					public void handle(ActionEvent event) {
+						
+					}
+				});
 				transition.play();
 				
-				//pane.getChildren().remove(pane.getChildren().lastIndexOf(sp[k]));
-				if(c==2)
-				{
-					x+=10;
-				}
-				else if(c==3)
-				{
-					y-=10;
-					x+=5;
-				}
-				else if(c==4)
-				{
-					y+=10;
-					x+=5;
-				}
-				cell[i1[k]][j1[k]].g.getChildren().add(sp[k]);
-				add(cell[i1[k]][j1[k]].g,cell[i1[k]][j1[k]].color,cell[i1[k]][j1[k]].x,cell[i1[k]][j1[k]].y);
-			
+				
+				pane.getChildren().remove(pane.getChildren().lastIndexOf(sp[k]));
+				//cell[i1[k]][j1[k]].g.getChildren().add(sp[k]);
+				//add(cell[i1[k]][j1[k]].g,cell[i1[k]][j1[k]].color,cell[i1[k]][j1[k]].x,cell[i1[k]][j1[k]].y);
 				//
 				//
 			}
@@ -236,7 +227,8 @@ public class Board implements Initializable
 		
 		/*for(int k=0;k<4;k++)
 		{
-			System.out.println(i1[k]+" "+j1[k]);
+			pane.getChildren().remove(pane.getChildren().lastIndexOf(sp[k]));
+			//System.out.println(i1[k]+" "+j1[k]);
 			if((i1[k]>=0 && i1[k]<=8) && (j1[k]>=0 && j1[k]<=5))
 			{
 				}
