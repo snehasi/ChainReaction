@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="pane" prefHeight="619.0" prefWidth="603.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Board">
+   <children>
+      <Separator layoutY="65.0" prefHeight="11.0" prefWidth="603.0" style="-fx-background-color: #002359;" />
+      <Text fill="#fcf9f9" layoutX="78.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chain Reaction" wrappingWidth="198.017578125">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="45.0" fitWidth="47.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@logo.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="448.0" layoutY="17.0" mnemonicParsing="false" style="-fx-background-color: #242526;" text="UNDO" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <MenuButton layoutX="537.0" layoutY="17.0" mnemonicParsing="false" style="-fx-background-color: #242526;" text=":" textFill="WHITE">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Settings" />
+          <MenuItem mnemonicParsing="false" text="New Game" />
+        </items>
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </MenuButton>
+   </children>
+</AnchorPane>
