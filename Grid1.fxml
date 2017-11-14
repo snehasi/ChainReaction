@@ -28,8 +28,8 @@
       </Button>
       <MenuButton layoutX="537.0" layoutY="17.0" mnemonicParsing="false" style="-fx-background-color: #242526;" text=":" textFill="WHITE">
         <items>
-          <MenuItem mnemonicParsing="false" text="Settings" />
-          <MenuItem mnemonicParsing="false" text="New Game" />
+          <MenuItem mnemonicParsing="false" onAction="#gotosettingsfromgrid1" text="Settings" />
+          <MenuItem mnemonicParsing="false" onAction="#gotonewgamefromgrid1" text="New Game" />
         </items>
          <font>
             <Font name="System Bold" size="18.0" />
@@ -46,7 +46,7 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="55.0" layoutY="165.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: #f90404;" width="55.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="55.0" layoutX="275.0" layoutY="55.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: #f90404;" width="55.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="55.0" layoutY="55.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: #f90404;" width="55.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="55.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: #f90404;" width="55.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="55.0" onMouseClicked="#initialize" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: #f90404;" width="55.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="55.0" layoutX="275.0" layoutY="220.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: #f90404;" width="55.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="55.0" layoutY="440.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: #f90404;" width="55.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="55.0" layoutX="55.0" layoutY="385.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: #f90404;" width="55.0" />
@@ -93,5 +93,10 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="55.0" layoutX="165.0" layoutY="275.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: #f90404;" width="55.0" />
          </children>
       </AnchorPane>
+      <Button layoutX="349.0" layoutY="17.0" mnemonicParsing="false" onAction="#backtomain" style="-fx-background-color: #242526;" text="BACK" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

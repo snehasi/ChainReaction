@@ -25,7 +25,7 @@ public class Grid1 extends Application {
 	@Override
 	public void start(Stage primaryStage) throws IOException
 	{
-		Parent loader =FXMLLoader.load(getClass().getResource("/Grid1.fxml"));
+		Parent loader =FXMLLoader.load(getClass().getResource("/application/Grid1.fxml"));
 		Scene scene=new Scene(loader);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		primaryStage.setScene(scene);
