@@ -198,30 +198,32 @@ public class Board implements Initializable
 				//pane.getChildren().add(l);
 				
 				
-				sp[k] = MakeSphere(Color.RED,cell[i][j].x+22.5,cell[i][j].y+22.5);
+				Sphere s = MakeSphere(Color.RED,cell[i][j].x+22.5,cell[i][j].y+22.5);
+				int a=i1[k];
+				int b =j1[k];
 				
-				
-				pane.getChildren().add(sp[k]);
+				pane.getChildren().add(s);
 				
 				PathTransition transition=new PathTransition();
 				
-				transition.setNode(sp[k]);
+				transition.setNode(s);
 				transition.setDuration(Duration.seconds(0.5));
 				transition.setPath(l);
 				transition.setCycleCount(1);
 				transition.setOnFinished(new EventHandler<ActionEvent>() {
-					public void handle(ActionEvent event) {
-						
+					public void handle(ActionEvent event) 
+					{
+						pane.getChildren().remove(pane.getChildren().lastIndexOf(s));
+						//cell[i1[k]][j1[k]].g.getChildren().add(sp[k]);
+						add(cell[a][b].g,cell[a][b].color,cell[a][b].x,cell[a][b].y);
+						//
+						//
 					}
 				});
 				transition.play();
 				
 				
-				pane.getChildren().remove(pane.getChildren().lastIndexOf(sp[k]));
-				//cell[i1[k]][j1[k]].g.getChildren().add(sp[k]);
-				//add(cell[i1[k]][j1[k]].g,cell[i1[k]][j1[k]].color,cell[i1[k]][j1[k]].x,cell[i1[k]][j1[k]].y);
-				//
-				//
+				
 			}
 		}
 		
@@ -238,4 +240,3 @@ public class Board implements Initializable
 	
 	
 }
-
