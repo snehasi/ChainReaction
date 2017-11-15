@@ -10,7 +10,7 @@ class Cell
 	Rectangle rec;
 	int cmass;
 	int count;
-	int player;
+	Player player;
 	int r;
 	int c;
 	int x;
