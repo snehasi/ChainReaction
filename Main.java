@@ -1,6 +1,7 @@
 package application;
 	
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.print.DocFlavor.URL;
 
@@ -32,7 +33,7 @@ public class Main extends Application {
 		
 		return xx;
 	}
-	
+	//ArrayList <Player> playerslist = new ArrayList<Player> ();
 //	@Override
 //	public void start(Stage stage) throws Exception {
 //	    java.net.URL location = getClass().getResource("/application/Main.fxml");

@@ -16,6 +16,9 @@
       </Text>
       <Button layoutX="437.0" layoutY="13.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="91.0" text="Undo" />
       <ComboBox layoutX="569.0" layoutY="13.0" prefHeight="27.0" prefWidth="27.0" />
+      <Separator layoutX="9.0" layoutY="52.0" prefHeight="5.0" prefWidth="698.0" style="-fx-background-color: #FF6600;" />
+      <AnchorPane fx:id="r" layoutY="7.0" prefHeight="710.0" prefWidth="679.0">
+      <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="79.0" layoutX="526.0" layoutY="700.0" stroke="#ee0707" strokeType="INSIDE" width="84.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="79.0" layoutX="526.0" layoutY="621.0" stroke="#ee0707" strokeType="INSIDE" width="84.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="79.0" layoutX="526.0" layoutY="546.0" stroke="#ee0707" strokeType="INSIDE" width="84.0" />
@@ -88,7 +91,7 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="79.0" layoutX="106.0" layoutY="546.0" stroke="#ee0707" strokeType="INSIDE" width="84.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="79.0" layoutX="106.0" layoutY="621.0" stroke="#ee0707" strokeType="INSIDE" width="84.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="79.0" layoutX="106.0" layoutY="700.0" stroke="#ee0707" strokeType="INSIDE" width="84.0" />
-      <Separator layoutX="9.0" layoutY="52.0" prefHeight="5.0" prefWidth="698.0" style="-fx-background-color: #FF6600;" />
-      
+      </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
