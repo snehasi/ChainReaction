@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.sun.javafx.scene.control.skin.CustomColorDialog;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,20 +25,25 @@ import javafx.stage.Stage;
 
 public class SettingsController {
 	public Stage yy;
-	public PlayerSettings p;
+	
 	private MainController maincont;
 	@FXML
 	private Rectangle rect;
-	@FXML void gotoplayersettings() throws IOException {
-		Stage primaryStage=Main.getstage();
-		//bo.start(pr);
-		Parent loader =FXMLLoader.load(getClass().getResource("/application/playersettings.fxml"));
-		Scene scene=new Scene(loader);
-		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		primaryStage.setScene(scene);
-		primaryStage.sizeToScene();
-        primaryStage.show();
-        //yy =  primaryStage;
+	@FXML
+	private ColorPicker colorPick;
+	//public Color c;
+	//color -- colorPick , soundeffect, vibration
+	Color c;
+	public void getcolorfromplaysettings() {
+		colorPick.setOnAction(new EventHandler() {
+		    public void handle(Event t) {
+		        c = colorPick.getValue();
+		        
+		    }
+
+			
+		});
+		System.out.println(c);
 	}
 	//back to main from settings
 	public void backtomainfromsettings() throws IOException {

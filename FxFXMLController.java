@@ -43,40 +43,15 @@ public class FxFXMLController
 	{
 	}
 	
-	@FXML
-	private Rectangle getIntersectedRect(MouseEvent me) {
-		// TODO Auto-generated method stub
-		Node n = me.getPickResult().getIntersectedNode();
-        return (n instanceof Rectangle) ? (Rectangle) n : null;
-		//return null;
-	}
 	
-	private void addEventHandler(AnchorPane r2, Node node) {
-	    // TODO Auto-generated method stub
-	         node.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent me) -> {
-	                if(me.getButton().equals(MouseButton.SECONDARY)) {
-	                    r2.getChildren().remove(node);
-	                }
-	            });}
-	@FXML
-    private AnchorPane r ;
 	
-	@FXML
-    private Rectangle rec ;
+	
+	
 	
 	@FXML
 	private void initialize() 
 	{	
-		r.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent me)->{
-		 if(((MouseEvent) me).getButton().equals(MouseButton.PRIMARY)) {
-           Rectangle rec = getIntersectedRect(me);
-           if (rec != null) {
-               Circle circle = new Circle(rec.getX()+25, rec.getY()+25, 9, Color.RED);
-               addEventHandler(r, circle);
-               r.getChildren().add(circle);
-           }
-       }
-	});
+		
 	}
 	//back to menu page
 	public void backtomain() throws IOException {
