@@ -1,7 +1,6 @@
 package application;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,10 +19,6 @@ public class MainController {
 //	    thisStage = stage;
 //	}
 	//small grid
-	ArrayList <Player> playerslist = new ArrayList<Player> ();
-	@FXML void takeoutplayer() {
-		
-	}
 	@FXML void gotoscreen2() throws IOException {
 		Stage primaryStage=Main.getstage();
 		//bo.start(pr);

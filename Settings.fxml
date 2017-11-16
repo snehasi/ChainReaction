@@ -34,20 +34,20 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <ColorPicker fx:id="colorPick" layoutX="447.0" layoutY="136.0" onAction="#getcolorfromplaysettings" onMouseExited="#getcolorfromplaysettings" prefHeight="39.0" prefWidth="129.0" />
+      <ColorPicker fx:id="colorPick" layoutX="447.0" layoutY="136.0" onAction="#getcolorfromplaysettings" onMouseDragReleased="#getcolorfromplaysettings" onMouseReleased="#getcolorfromplaysettings" onTouchPressed="#getcolorfromplaysettings" prefHeight="39.0" prefWidth="129.0" />
       <ColorPicker layoutX="447.0" layoutY="191.0" onAction="#getcolorfromplaysettings" prefHeight="39.0" prefWidth="129.0" />
-      <Button layoutX="14.0" layoutY="193.0" mnemonicParsing="false" onAction="#gotoplayersettings" prefHeight="39.0" prefWidth="414.0" style="-fx-background-color: #242526;" text="Player 2 Settings : Customization for Player 2" textFill="WHITE" />
+      <Button layoutX="14.0" layoutY="193.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="414.0" style="-fx-background-color: #242526;" text="Player 2 Settings : Customization for Player 2" textFill="WHITE" />
       <ColorPicker layoutX="447.0" layoutY="245.0" onAction="#getcolorfromplaysettings" prefHeight="39.0" prefWidth="129.0" />
-      <Button layoutX="14.0" layoutY="247.0" mnemonicParsing="false" onAction="#gotoplayersettings" prefHeight="39.0" prefWidth="414.0" style="-fx-background-color: #242526;" text="Player 3 Settings : Customization for Player 3" textFill="WHITE" />
+      <Button layoutX="14.0" layoutY="247.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="414.0" style="-fx-background-color: #242526;" text="Player 3 Settings : Customization for Player 3" textFill="WHITE" />
       <ColorPicker layoutX="451.0" layoutY="310.0" onAction="#getcolorfromplaysettings" prefHeight="39.0" prefWidth="129.0" />
-      <Button layoutX="18.0" layoutY="312.0" mnemonicParsing="false" onAction="#gotoplayersettings" prefHeight="39.0" prefWidth="414.0" style="-fx-background-color: #242526;" text="Player 4 Settings : Customization for Player 4" textFill="WHITE" />
+      <Button layoutX="18.0" layoutY="312.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="414.0" style="-fx-background-color: #242526;" text="Player 4 Settings : Customization for Player 4" textFill="WHITE" />
       <ColorPicker layoutX="453.0" layoutY="365.0" onAction="#getcolorfromplaysettings" prefHeight="39.0" prefWidth="129.0" />
-      <Button layoutX="20.0" layoutY="367.0" mnemonicParsing="false" onAction="#gotoplayersettings" prefHeight="39.0" prefWidth="414.0" style="-fx-background-color: #242526;" text="Player 5 Settings : Customization for Player 5" textFill="WHITE" />
+      <Button layoutX="20.0" layoutY="367.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="414.0" style="-fx-background-color: #242526;" text="Player 5 Settings : Customization for Player 5" textFill="WHITE" />
       <ColorPicker layoutX="451.0" layoutY="423.0" onAction="#getcolorfromplaysettings" prefHeight="39.0" prefWidth="129.0" />
-      <Button layoutX="18.0" layoutY="425.0" mnemonicParsing="false" onAction="#gotoplayersettings" prefHeight="39.0" prefWidth="414.0" style="-fx-background-color: #242526;" text="Player 6 Settings : Customization for Player 6" textFill="WHITE" />
+      <Button layoutX="18.0" layoutY="425.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="414.0" style="-fx-background-color: #242526;" text="Player 6 Settings : Customization for Player 6" textFill="WHITE" />
       <ColorPicker layoutX="452.0" layoutY="486.0" onAction="#getcolorfromplaysettings" prefHeight="39.0" prefWidth="129.0" />
-      <Button layoutX="19.0" layoutY="488.0" mnemonicParsing="false" onAction="#gotoplayersettings" prefHeight="39.0" prefWidth="414.0" style="-fx-background-color: #242526;" text="Player 7 Settings : Customization for Player 7" textFill="WHITE" />
+      <Button layoutX="19.0" layoutY="488.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="414.0" style="-fx-background-color: #242526;" text="Player 7 Settings : Customization for Player 7" textFill="WHITE" />
       <ColorPicker layoutX="451.0" layoutY="540.0" onAction="#getcolorfromplaysettings" prefHeight="39.0" prefWidth="129.0" />
-      <Button layoutX="18.0" layoutY="542.0" mnemonicParsing="false" onAction="#gotoplayersettings" prefHeight="39.0" prefWidth="414.0" style="-fx-background-color: #242526;" text="Player 8 Settings : Customization for Player 8" textFill="WHITE" />
+      <Button layoutX="18.0" layoutY="542.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="414.0" style="-fx-background-color: #242526;" text="Player 8 Settings : Customization for Player 8" textFill="WHITE" />
    </children>
 </AnchorPane>
