@@ -6,7 +6,6 @@ public class Player
 {
 	String name;
 	Color color;
-	Boolean vibration;
 	int count;
 	Board x;
-}
+	}

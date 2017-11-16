@@ -10,12 +10,13 @@ class Cell
 	Rectangle rec;
 	int cmass;
 	int count;
-	int player;
+	Player player;
 	int r;
 	int c;
 	int x;
 	int y;
 	Color color;
+	int explode;
 	
 	public int get_Cmass()
 	{
