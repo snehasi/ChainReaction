@@ -53,23 +53,6 @@ public class Board implements Initializable
 	
 	
 	
-	@FXML
-	// The reference of inputText will be injected by the FXML loader
-	private TextField inputText;
-	
-	// The reference of outputText will be injected by the FXML loader
-	@FXML
-	private TextArea outputText;
-	
-	// location and resources will be automatically injected by the FXML loader	
-	@FXML
-	private URL location;
-	
-	@FXML
-	private ResourceBundle resources;
-	
-	
-	
 	
 	
 	
