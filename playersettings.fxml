@@ -8,32 +8,22 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="619.0" prefWidth="603.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="619.0" prefWidth="603.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Player">
    <children>
       <Separator layoutX="2.0" layoutY="263.0" prefHeight="1.0" prefWidth="600.0" />
       <Separator layoutX="4.0" layoutY="337.0" prefHeight="5.0" prefWidth="600.0" />
       <Separator layoutX="4.0" layoutY="413.0" prefHeight="8.0" prefWidth="600.0" />
       <Separator layoutX="2.0" layoutY="491.0" prefHeight="8.0" prefWidth="600.0" />
-      <RadioButton layoutX="174.0" layoutY="499.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="319.0" text="Turn Vibration On/Off" textAlignment="RIGHT" textFill="WHITE">
+      <RadioButton layoutX="149.0" layoutY="428.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="319.0" text="Turn Vibration On/Off" textAlignment="RIGHT" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font></RadioButton>
-      <Button layoutX="95.0" layoutY="206.0" mnemonicParsing="false" style="-fx-background-color: #242526;" text="Red : Player's Orb's Red Component" textFill="WHITE">
+      <Button layoutX="53.0" layoutY="276.0" mnemonicParsing="false" style="-fx-background-color: #242526;" text="Player's Orb's Color Component" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button layoutX="80.0" layoutY="278.0" mnemonicParsing="false" style="-fx-background-color: #242526;" text="Green : Player's Orb's green Component" textFill="WHITE">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Button>
-      <Button layoutX="85.0" layoutY="355.0" mnemonicParsing="false" style="-fx-background-color: #242526;" text="Blue : Player's Orb's green Component" textFill="WHITE">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Button>
-      <MenuButton layoutX="140.0" layoutY="428.0" mnemonicParsing="false" style="-fx-background-color: #242526;" text="Sfx : Player's Sound Effect" textFill="WHITE">
+      <MenuButton layoutX="122.0" layoutY="358.0" mnemonicParsing="false" style="-fx-background-color: #242526;" text="Sfx : Player's Sound Effect" textFill="WHITE">
         <items>
           <MenuItem mnemonicParsing="false" text="Beep" />
           <MenuItem mnemonicParsing="false" text="Click" />
@@ -48,15 +38,21 @@
       </MenuButton>
       <Separator layoutX="2.0" layoutY="552.0" prefHeight="8.0" prefWidth="600.0" />
       <Separator layoutX="7.0" layoutY="145.0" prefHeight="11.0" prefWidth="603.0" style="-fx-background-color: #002359;" />
-      <Text fill="#fcf9f9" layoutX="174.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chain Reaction Preferances">
+      <Text fill="#fcf9f9" layoutX="86.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chain Reaction Preferances">
          <font>
             <Font size="30.0" />
          </font>
       </Text>
-      <ImageView fitHeight="59.0" fitWidth="77.0" layoutX="42.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="59.0" fitWidth="77.0" layoutX="20.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@logo.png" />
          </image>
       </ImageView>
+      <ColorPicker fx:id="colorPick" layoutX="468.0" layoutY="276.0" onAction="#getcolorfromplaysettings" onMouseExited="#getcolorfromplaysettings" prefHeight="45.0" prefWidth="93.0" />
+      <Button layoutX="501.0" layoutY="43.0" mnemonicParsing="false" onAction="#backtosettingsfromplaysettings" style="-fx-background-color: #242526;" text="BACK" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

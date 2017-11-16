@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.shape.Rectangle;
 
 
 public class PlayerSettings extends Application {
@@ -24,4 +25,6 @@ public class PlayerSettings extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
+
+	
 }
