@@ -13,6 +13,7 @@ public class MainController {
 	private Main main;
 	private Grid1 bo;
 	public static Stage yyy;
+	
 //	Stage thisStage;
 //
 //	public void setStage (Stage stage){
@@ -55,6 +56,17 @@ public class MainController {
 		primaryStage.sizeToScene();
         primaryStage.show();
 	}
-	//playersettings--settings mein controller
+	//resume button
+	public void savestate() throws IOException {
+		Stage primaryStage=Grid1.getstageee();
+		//Scene pp=bo.getscene();
+		
+		Parent loader =FXMLLoader.load(getClass().getResource("/application/Grid1.fxml"));
+		Scene pp=new Scene(loader);
+		pp.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		primaryStage.setScene(pp);
+		primaryStage.sizeToScene();
+        primaryStage.show();
+	}
 
 }

@@ -1,6 +1,13 @@
 package application;
 
+import java.io.EOFException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,7 +48,9 @@ import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class Board implements Initializable
+
+
+public class Board implements Initializable, Serializable
 {
 	
 	@FXML  
@@ -56,14 +65,48 @@ public class Board implements Initializable
 	int size=55;
 	
 	
+	///// serialising and deserialising
 	
-	@FXML
-	// The reference of inputText will be injected by the FXML loader
-	private TextField inputText;
+	public static void serialize(ArrayList<frame> forser) throws IOException {
+		
+		ObjectOutputStream out = null;
+		try {
+			out= new ObjectOutputStream(new FileOutputStream("//Users//snehasi//eclipse-workspace//finalv1//playlist.txt//"));
+			for(frame s: forser)
+			    out.writeObject(s);
+		}
+		finally {
+			out.close();
+		}
+	}
 	
-	// The reference of outputText will be injected by the FXML loader
-	@FXML
-	private TextArea outputText;
+	
+	public static ArrayList<frame> deserialize() throws FileNotFoundException, IOException, ClassNotFoundException {
+		ObjectInputStream innn=null;
+		ArrayList<frame> forser = new ArrayList<frame>();
+		try {
+			
+			innn=new ObjectInputStream(new FileInputStream("//Users//snehasi//eclipse-workspace//finalv1//playlist.txt//"));
+			frame s1 = (frame)innn.readObject();
+			forser.add(s1);
+			while(s1!=null)
+			{
+				s1 = (frame) innn.readObject();
+				forser.add(s1);
+			}
+		}
+		catch(EOFException a)
+		{
+			return forser;
+		}
+		finally {
+			innn.close();
+		}
+		return forser;
+	}
+	
+	///
+	
 	
 	// location and resources will be automatically injected by the FXML loader	
 	@FXML
@@ -71,6 +114,19 @@ public class Board implements Initializable
 	
 	@FXML
 	private ResourceBundle resources;
+	
+	public static void main(String[] args) throws IOException, ClassNotFoundException {
+		ArrayList<frame> forser = new ArrayList<frame>();
+		frame s1 = new frame("RED", 2);
+		frame s2 = new frame("BLUE",3);
+		forser.add(s1);
+		forser.add(s2);
+		serialize(forser);
+		ArrayList<frame> forser1= new ArrayList<frame>();
+		forser1 =deserialize();
+		
+		//add();
+	}
 	
 	
 	@Override
@@ -191,6 +247,7 @@ public class Board implements Initializable
         }
 		
 	}
+	//-
 	public Sphere MakeSphere(double x,double y,Color c) 
 	{
 		//System.out.println(c+"MakeSPhere");		
@@ -229,7 +286,7 @@ public class Board implements Initializable
 	    rt.setInterpolator(Interpolator.LINEAR);
         rt.play();
 	}
-	
+	//--
 	public void add(int i,int j,Player player)
 	{		
 		System.out.println("ADD");
@@ -239,6 +296,7 @@ public class Board implements Initializable
 		
 		int m=cell[i][j].cmass;
 		cell[i][j].count+=1;
+		//frame.count=cell[i][j].count;
 		int c=cell[i][j].count;
 		cell[i][j].color=player.color;
 		cell[i][j].player=player;
@@ -266,7 +324,7 @@ public class Board implements Initializable
 			explode(i,j);
 		}
 	}
-	
+	//--
 	public void explode(int i,int j)
 	{
 		//System.out.println("size "+cell[i][j].g.getChildren().size());
@@ -342,7 +400,7 @@ public class Board implements Initializable
 							s.setMaterial(phong);
 						}
 						}
-						add(a,b,cell[i][j].player);
+						add(a,b,cell[i][j].player); ////here
 						cell[i][j].explode+=1;
 						System.out.println("Explode---"+cell[i][j].player.color+" "+p.size()+" "+cell[i][j].explode);
 					}
@@ -396,6 +454,7 @@ public class Board implements Initializable
 			
 		}
 	}*/
+	//
 	public void dialog()
 	{
 		if(p.size()==1)
@@ -438,6 +497,7 @@ public class Board implements Initializable
 			}
 		}
 	}
+	//
 	//back to menu page
 		public void backtomain() throws IOException {
 			Stage primaryStage=Main.getstage();

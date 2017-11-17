@@ -22,17 +22,36 @@ import javafx.scene.shape.Rectangle;
 
 
 public class Grid1 extends Application {
+	static Stage yo = new Stage(); 
+	static Scene yooo;
+	int n,m,num;
+	Grid1(int num,int n, int m)
+	{
+		this.num=num;
+		this.n=n;
+		this.m=m;
+	}
+	
 	@Override
-	public void start(Stage primaryStage) throws IOException
+	public void start(Stage prStage) throws IOException
 	{
 		Parent loader =FXMLLoader.load(getClass().getResource("/application/Grid1.fxml"));
 		Scene scene=new Scene(loader);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		primaryStage.setScene(scene);
-		primaryStage.sizeToScene();
-        primaryStage.show();
+		prStage.setScene(scene);
+		prStage.sizeToScene();
+        prStage.show();
+        yo=prStage;
+        Scene x = scene;
 	}
-	
+	public static Stage getstageee()
+	{
+		return yo;
+	}
+	public static Scene getscene()
+	{
+		return yooo;
+	}
 	public static void main(String[] args) {
 		launch(args);
 	}
