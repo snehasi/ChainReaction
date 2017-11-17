@@ -77,6 +77,7 @@ public class Board implements Initializable
 	public void initialize(URL url, ResourceBundle resource) 
 	{		
 		
+		//hardcoded 3 players for now
 		Player z=new Player();
 		z.name="1";
 		z.color=Color.RED;
@@ -92,8 +93,8 @@ public class Board implements Initializable
 		z.color=Color.GREEN;
 		p.add(z);
 		
-		System.out.println(p.get(0));
-		System.out.println(p.get(1));
+		//System.out.println(p.get(0));
+		//System.out.println(p.get(1));
 		
 		
         for (int i = 0; i < 9; i++) 
@@ -137,6 +138,8 @@ public class Board implements Initializable
         					//System.out.println(p.get(0));
         					add(i,j,p.get(0));
         					//System.out.println("CHANGE IN ADD");
+        					//when i call set on finished in transition then the control comes back here 
+        					//and then goes back to tansition thats why color is changing again.
         					System.out.println(p.get(0)+"changeincolor    ");
         					Player pl=p.remove(0);
         					p.add(pl);
@@ -149,7 +152,9 @@ public class Board implements Initializable
         			            	System.out.print(p.get(0).color);
         			            }
         			        }  
-        					
+        					//to show game over as soon as only one player is left
+        					if(p.size()==1)
+        						dialog(); // function to show alert box
         					
         					}
         				}
@@ -340,60 +345,57 @@ public class Board implements Initializable
 						add(a,b,cell[i][j].player);
 						cell[i][j].explode+=1;
 						System.out.println("Explode---"+cell[i][j].player.color+" "+p.size()+" "+cell[i][j].explode);
-						if(cell[i][j].explode==cell[i][j].cmass && p.size()==1)
-						{
-							transition.stop();
-							ButtonType b1=new ButtonType("Go to Main Menu");
-							ButtonType b2=new ButtonType("New Game");
-							
-							Alert alert = new Alert(AlertType.CONFIRMATION);
-							alert.setHeaderText("Congratulations!");
-							alert.setTitle("Game Over");
-							alert.getButtonTypes().setAll(b1,b2);
-							alert.showAndWait();
-							
-							if(alert.getResult()==b1)
-							{
-								try 
-								{
-									backtomain();
-								} 
-								catch (IOException ex) 
-								{
-									ex.printStackTrace();
-								}
-							}
-							else if(alert.getResult()==b2)
-							{
-								Stage primaryStage =new Stage();	        						
-								Parent loader = null;
-								try {
-									loader = FXMLLoader.load(getClass().getResource("/application/Grid1.fxml"));
-								} catch (IOException ex) {
-									// TODO Auto-generated catch block
-									ex.printStackTrace();
-								}
-								Scene scene=new Scene(loader);
-								scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-								primaryStage.setScene(scene);
-								primaryStage.sizeToScene();
-						        primaryStage.show();
-							}
-							cell[i][j].explode=0;
-						}
-						
 					}
-				});
 				/*if(cell[i][j].g.getChildren().size()==0)
 				{
 				System.out.println("CHANGE");
 				changeColor();
 				}*/
+			});
 			}
-		}
 		cell[i][j].count=0;
-		
 	}
+	}
+	/*public void explode(int i,int j,Player p)
+	{
+		if(cell[i][j].count==cell[i][j].cmass)
+		{
+			int i1=i-1;
+			int j1=j;
+			if((i1>=0 && i1<=8) && (j1>=0 && j1<=5))
+			{
+				Line l1=new Line(cell[i][j].x+22.5,cell[i][j].y+22.5,cell[i1][j1].x+22.5,cell[i1][j1].y+22.5);
+				Sphere s = MakeSphere(cell[i][j].x+22.5,cell[i][j].y+22.5,cell[i][j].color);
+				
+			}
+					
+			int i2=i;
+			int j2=j+1;
+			if((i1>=0 && i1<=8) && (j1>=0 && j1<=5))
+			{
+				Line l2=new Line(cell[i][j].x+22.5,cell[i][j].y+22.5,cell[i2][j2].x+22.5,cell[i2][j2].y+22.5);
+				Sphere s = MakeSphere(cell[i][j].x+22.5,cell[i][j].y+22.5,cell[i][j].color);
+				
+			}
+			int i3=i+1;
+			int j3=j;
+			if((i1>=0 && i1<=8) && (j1>=0 && j1<=5))
+			{
+				Line l3=new Line(cell[i][j].x+22.5,cell[i][j].y+22.5,cell[i3][j3].x+22.5,cell[i3][j3].y+22.5);
+				Sphere s = MakeSphere(cell[i][j].x+22.5,cell[i][j].y+22.5,cell[i][j].color);
+				
+			}
+			int i4=i;
+			int j4=j-1;
+			if((i1>=0 && i1<=8) && (j1>=0 && j1<=5))
+			{
+				Line l4=new Line(cell[i][j].x+22.5,cell[i][j].y+22.5,cell[i4][j4].x+22.5,cell[i4][j4].y+22.5);
+				Sphere s = MakeSphere(cell[i][j].x+22.5,cell[i][j].y+22.5,cell[i][j].color);
+				
+			}
+			
+		}
+	}*/
 	public void dialog()
 	{
 		if(p.size()==1)
