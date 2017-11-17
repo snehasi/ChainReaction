@@ -1,6 +1,13 @@
 package application;
 
+import java.io.EOFException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,6 +28,10 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
@@ -37,7 +48,9 @@ import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class Board implements Initializable
+
+
+public class Board implements Initializable, Serializable
 {
 	
 	@FXML  
@@ -52,14 +65,75 @@ public class Board implements Initializable
 	int size=55;
 	
 	
+	///// serialising and deserialising
+	
+	public static void serialize(ArrayList<frame> forser) throws IOException {
+		
+		ObjectOutputStream out = null;
+		try {
+			out= new ObjectOutputStream(new FileOutputStream("//Users//snehasi//eclipse-workspace//finalv1//playlist.txt//"));
+			for(frame s: forser)
+			    out.writeObject(s);
+		}
+		finally {
+			out.close();
+		}
+	}
 	
 	
+	public static ArrayList<frame> deserialize() throws FileNotFoundException, IOException, ClassNotFoundException {
+		ObjectInputStream innn=null;
+		ArrayList<frame> forser = new ArrayList<frame>();
+		try {
+			
+			innn=new ObjectInputStream(new FileInputStream("//Users//snehasi//eclipse-workspace//finalv1//playlist.txt//"));
+			frame s1 = (frame)innn.readObject();
+			forser.add(s1);
+			while(s1!=null)
+			{
+				s1 = (frame) innn.readObject();
+				forser.add(s1);
+			}
+		}
+		catch(EOFException a)
+		{
+			return forser;
+		}
+		finally {
+			innn.close();
+		}
+		return forser;
+	}
+	
+	///
+	
+	
+	// location and resources will be automatically injected by the FXML loader	
+	@FXML
+	private URL location;
+	
+	@FXML
+	private ResourceBundle resources;
+	
+	public static void main(String[] args) throws IOException, ClassNotFoundException {
+		ArrayList<frame> forser = new ArrayList<frame>();
+		frame s1 = new frame("RED", 2);
+		frame s2 = new frame("BLUE",3);
+		forser.add(s1);
+		forser.add(s2);
+		serialize(forser);
+		ArrayList<frame> forser1= new ArrayList<frame>();
+		forser1 =deserialize();
+		
+		//add();
+	}
 	
 	
 	@Override
 	public void initialize(URL url, ResourceBundle resource) 
 	{		
 		
+		//hardcoded 3 players for now
 		Player z=new Player();
 		z.name="1";
 		z.color=Color.RED;
@@ -70,8 +144,13 @@ public class Board implements Initializable
 		z.color=Color.BLUE;
 		p.add(z);
 		
-		System.out.println(p.get(0));
-		System.out.println(p.get(1));
+		z=new Player();
+		z.name="3";
+		z.color=Color.GREEN;
+		p.add(z);
+		
+		//System.out.println(p.get(0));
+		//System.out.println(p.get(1));
 		
 		
         for (int i = 0; i < 9; i++) 
@@ -84,7 +163,7 @@ public class Board implements Initializable
             	r.setWidth(size);
             	r.setHeight(size);
             	
-            	r.setFill(Color.BLACK);
+            	r.setFill(Color.TRANSPARENT);
             	r.setStroke(p.get(0).color);
             	
             	Cell c=new Cell();
@@ -115,14 +194,32 @@ public class Board implements Initializable
         					//System.out.println(p.get(0));
         					add(i,j,p.get(0));
         					//System.out.println("CHANGE IN ADD");
-        					changeColor();
+        					//when i call set on finished in transition then the control comes back here 
+        					//and then goes back to tansition thats why color is changing again.
+        					System.out.println(p.get(0)+"changeincolor    ");
+        					Player pl=p.remove(0);
+        					p.add(pl);
+        					for (int l = 0; l < 9; l++) 
+        			        {
+        			            for(int o=0;o<6;o++)
+        			            {
+        			            	Cell c=cell[l][o];
+        			            	c.rec.setStroke(p.get(0).color);
+        			            	System.out.print(p.get(0).color);
+        			            }
+        			        }  
+        					//to show game over as soon as only one player is left
+        					if(p.size()==1)
+        						dialog(); // function to show alert box
+        					
         					}
         				}
         		});
             	c.g=g;
             	cell[i][j]=c;
-            	pane.getChildren().add(r);
             	pane.getChildren().add(g);
+            	pane.getChildren().add(r);
+            	
             	x=x+size;
             }
             x=137;
@@ -150,6 +247,7 @@ public class Board implements Initializable
         }
 		
 	}
+	//-
 	public Sphere MakeSphere(double x,double y,Color c) 
 	{
 		//System.out.println(c+"MakeSPhere");		
@@ -188,7 +286,7 @@ public class Board implements Initializable
 	    rt.setInterpolator(Interpolator.LINEAR);
         rt.play();
 	}
-	
+	//--
 	public void add(int i,int j,Player player)
 	{		
 		System.out.println("ADD");
@@ -198,6 +296,7 @@ public class Board implements Initializable
 		
 		int m=cell[i][j].cmass;
 		cell[i][j].count+=1;
+		//frame.count=cell[i][j].count;
 		int c=cell[i][j].count;
 		cell[i][j].color=player.color;
 		cell[i][j].player=player;
@@ -224,16 +323,14 @@ public class Board implements Initializable
 			System.out.println("explode");
 			explode(i,j);
 		}
-		
 	}
-	
+	//--
 	public void explode(int i,int j)
 	{
 		//System.out.println("size "+cell[i][j].g.getChildren().size());
 		int i1[]=new int[4];
 		int j1[]=new int[4];
 		
-		int c=cell[i][j].cmass;
 		
 		i1[0]=i-1;
 		i1[1]=i;
@@ -252,7 +349,6 @@ public class Board implements Initializable
 			{
 				//System.out.println("SIZE "+cell[i][j].g.getChildren().size());
 				cell[i][j].g.getChildren().remove(0);
-				cell[i][j].count-=1;
 				Line l=new Line(cell[i][j].x+22.5,cell[i][j].y+22.5,cell[i1[k]][j1[k]].x+22.5,cell[i1[k]][j1[k]].y+22.5);
 				//Line l=new Line(cell[i][j].x+22.5,cell[i][j].y+22.5,cell[i-1][j].x+22.5,cell[i-1][j].y+22.5);
 				//l.setStroke(Color.BLUE);
@@ -271,6 +367,7 @@ public class Board implements Initializable
 				transition.setDuration(Duration.seconds(0.5));
 				transition.setPath(l);
 				transition.setCycleCount(1);
+				transition.play();
 				transition.setOnFinished(new EventHandler<ActionEvent>() {
 					public void handle(ActionEvent event) 
 					{
@@ -286,9 +383,12 @@ public class Board implements Initializable
 						
 						if(cell[a][b].player.count==0)
 						{
-							p.remove(cell[a][b].player);
+							int q=0;
+							while(p.get(q)!=cell[a][b].player)
+									q++;
+							p.remove(q);
 						}
-						System.out.println(p.size()+"-");
+						System.out.println(p.size( )+"-");
 						
 						System.out.println("SIZE *"+cell[a][b].g.getChildren().size()+" "+a+" "+b);
 						for(int d=0;d<cell[a][b].g.getChildren().size();d++)
@@ -300,25 +400,104 @@ public class Board implements Initializable
 							s.setMaterial(phong);
 						}
 						}
-						add(a,b,cell[i][j].player);
-						//System.out.print("Explode "+cell[i][j].player.color);
-						
-						/*if(cell[i][j].count==0)
-							{
-							changeColor();
-							}*/
+						add(a,b,cell[i][j].player); ////here
+						cell[i][j].explode+=1;
+						System.out.println("Explode---"+cell[i][j].player.color+" "+p.size()+" "+cell[i][j].explode);
 					}
-				});
-				transition.play();	
 				/*if(cell[i][j].g.getChildren().size()==0)
 				{
 				System.out.println("CHANGE");
 				changeColor();
 				}*/
+			});
 			}
-		}
 		cell[i][j].count=0;
 	}
+	}
+	/*public void explode(int i,int j,Player p)
+	{
+		if(cell[i][j].count==cell[i][j].cmass)
+		{
+			int i1=i-1;
+			int j1=j;
+			if((i1>=0 && i1<=8) && (j1>=0 && j1<=5))
+			{
+				Line l1=new Line(cell[i][j].x+22.5,cell[i][j].y+22.5,cell[i1][j1].x+22.5,cell[i1][j1].y+22.5);
+				Sphere s = MakeSphere(cell[i][j].x+22.5,cell[i][j].y+22.5,cell[i][j].color);
+				
+			}
+					
+			int i2=i;
+			int j2=j+1;
+			if((i1>=0 && i1<=8) && (j1>=0 && j1<=5))
+			{
+				Line l2=new Line(cell[i][j].x+22.5,cell[i][j].y+22.5,cell[i2][j2].x+22.5,cell[i2][j2].y+22.5);
+				Sphere s = MakeSphere(cell[i][j].x+22.5,cell[i][j].y+22.5,cell[i][j].color);
+				
+			}
+			int i3=i+1;
+			int j3=j;
+			if((i1>=0 && i1<=8) && (j1>=0 && j1<=5))
+			{
+				Line l3=new Line(cell[i][j].x+22.5,cell[i][j].y+22.5,cell[i3][j3].x+22.5,cell[i3][j3].y+22.5);
+				Sphere s = MakeSphere(cell[i][j].x+22.5,cell[i][j].y+22.5,cell[i][j].color);
+				
+			}
+			int i4=i;
+			int j4=j-1;
+			if((i1>=0 && i1<=8) && (j1>=0 && j1<=5))
+			{
+				Line l4=new Line(cell[i][j].x+22.5,cell[i][j].y+22.5,cell[i4][j4].x+22.5,cell[i4][j4].y+22.5);
+				Sphere s = MakeSphere(cell[i][j].x+22.5,cell[i][j].y+22.5,cell[i][j].color);
+				
+			}
+			
+		}
+	}*/
+	//
+	public void dialog()
+	{
+		if(p.size()==1)
+		{
+			ButtonType b1=new ButtonType("Go to Main Menu");
+			ButtonType b2=new ButtonType("New Game");
+			
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setHeaderText("Congratulations!");
+			alert.setTitle("Game Over");
+			alert.getButtonTypes().setAll(b1,b2);
+			alert.showAndWait();
+			
+			if(alert.getResult()==b1)
+			{
+				try 
+				{
+					backtomain();
+				} 
+				catch (IOException ex) 
+				{
+					ex.printStackTrace();
+				}
+			}
+			else if(alert.getResult()==b2)
+			{
+				Stage primaryStage =new Stage();	        						
+				Parent loader = null;
+				try {
+					loader = FXMLLoader.load(getClass().getResource("/application/Grid1.fxml"));
+				} catch (IOException ex) {
+					// TODO Auto-generated catch block
+					ex.printStackTrace();
+				}
+				Scene scene=new Scene(loader);
+				scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+				primaryStage.setScene(scene);
+				primaryStage.sizeToScene();
+		        primaryStage.show();
+			}
+		}
+	}
+	//
 	//back to menu page
 		public void backtomain() throws IOException {
 			Stage primaryStage=Main.getstage();

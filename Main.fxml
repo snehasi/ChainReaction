@@ -50,7 +50,7 @@
             <Font size="30.0" />
          </font>
       </Text>
-      <Button layoutX="42.0" layoutY="551.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="119.0" style="-fx-background-color: #242526;" text="Resume" textFill="WHITE" />
+      <Button fx:id="resu" layoutX="42.0" layoutY="551.0" mnemonicParsing="false" onAction="#savestate" prefHeight="39.0" prefWidth="119.0" style="-fx-background-color: #242526;" text="Resume" textFill="WHITE" />
       <Separator layoutY="125.0" prefHeight="11.0" prefWidth="603.0" style="-fx-background-color: #002359;" />
    </children>
 </AnchorPane>

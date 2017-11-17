@@ -34,7 +34,7 @@ public class SettingsController {
 	//public Color c;
 	//color -- colorPick , soundeffect, vibration
 	Color c;
-	public void getcolorfromplaysettings() {
+	public Color getcolorfromplaysettings() {
 		colorPick.setOnAction(new EventHandler() {
 		    public void handle(Event t) {
 		        c = colorPick.getValue();
@@ -44,6 +44,7 @@ public class SettingsController {
 			
 		});
 		System.out.println(c);
+		return c;
 	}
 	//back to main from settings
 	public void backtomainfromsettings() throws IOException {
