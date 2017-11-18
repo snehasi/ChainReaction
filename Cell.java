@@ -9,7 +9,7 @@ import javafx.scene.shape.Rectangle;
 public class Cell implements Serializable 
 {
 	Group g;
-	Rectangle rec;
+	//Rectangle rec;
 	int cmass;
 	int count; //
 	Player player; //
@@ -17,7 +17,7 @@ public class Cell implements Serializable
 	int c; 
 	int x;
 	int y;
-	Color color; //
+	String color; //
 	int explode; 
 	
 	public int get_Cmass()
@@ -41,30 +41,29 @@ public class Cell implements Serializable
 	public String getcolorasstring() {
 		return color.toString();
 	}
+	
 	public Color getcolor() {
-		return color;
+		Color c=Color.valueOf(color);
+		return c;
+	}
+	public void setcolor(Color c) {
+		color=c.toString();
 	}
 }
 class frame implements Serializable {
-	private String name;
-	private int i;
-	private int j;
-	public frame(String name, int count,int i,int j) {
-		// TODO Auto-generated constructor stub
-		this.count=count;
-		this.name=name;
-		this.i=i;
-		this.j=j;
-	}
+	String name;
+	int i;
+	int j;
+	int q;
+	
 	//Player player=new Player();
-	Cell obj = new Cell();
-	int count=obj.getcount();
+	
 	//String color;// = obj.getcolorasstring();
 	public String getname() {
 		return name;
 	}
-	public int getcount() {
-		return count;
+	public int getq() {
+		return q;
 	}
 	public int geti() {
 		return i;

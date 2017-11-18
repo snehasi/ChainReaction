@@ -25,7 +25,7 @@ public class Settings extends Application
 	//Player one = new Player("",);
 	public static void setcolor(Color c,int i)
 	{
-		p.get(i).color=c;
+		p.get(i).setcolor(c);
 	}
 	
 	public static ArrayList<Player> getarr()
@@ -35,31 +35,31 @@ public class Settings extends Application
 	public void adding(ArrayList<Player> p)
 	{
 		Player two = new Player();
-		two.color=Color.BLUE;
+		two.setcolor(Color.BLUE);
 		two.name="2 Player Game";
 		
 		Player three = new Player();
-		three.color=Color.WHITE;
+		three.setcolor(Color.WHITE);
 		three.name="3 Player Game";
 		
 		Player four = new Player();
-		four.color=Color.YELLOW;
+		four.setcolor(Color.YELLOW);
 		four.name="4 Player Game";
 		
 		Player five = new Player();
-		five.color=Color.PINK;
+		five.setcolor(Color.PINK);
 		five.name="5 Player Game";
 		
 		Player six = new Player();
-		six.color=Color.ORANGE;
+		six.setcolor(Color.ORANGE);
 		six.name="6 Player Game";
 		
 		Player seven = new Player();
-		seven.color=Color.GREEN;
+		seven.setcolor(Color.GREEN);
 		seven.name="7 Player Game";
 		
 		Player eight = new Player();
-		eight.color=Color.BROWN;
+		eight.setcolor(Color.BROWN);
 		eight.name="8 Player Game";
 		//p.addAll(one,two,three);
 		
@@ -105,7 +105,7 @@ public Stage yy;
 		colorPick1.setOnAction(new EventHandler() {
 		    public void handle(Event t) {
 		        c = colorPick1.getValue();
-		        setcolor(c,0);
+		        //setcolor(c,0);
 		        System.out.println(c);
 				
 		    }
@@ -114,7 +114,6 @@ public Stage yy;
 		    public void handle(Event t) {
 		        c = colorPick2.getValue();
 		        //p.get(1).color=c;
-		        setcolor(c,1);
 		        System.out.println(c);
 				
 		    }
@@ -123,7 +122,6 @@ public Stage yy;
 		    public void handle(Event t) {
 		        c = colorPick3.getValue();
 		        //p.get(2).color=c;
-		        setcolor(c,2);
 		        System.out.println(c);
 				
 		    }
@@ -132,7 +130,6 @@ public Stage yy;
 		    public void handle(Event t) {
 		        c = colorPick4.getValue();
 		        //p.get(3).color=c;
-		        setcolor(c,3);
 		        System.out.println(c);
 				
 		    }
@@ -141,7 +138,6 @@ public Stage yy;
 		    public void handle(Event t) {
 		        c = colorPick5.getValue();
 		        //p.get(4).color=c;
-		        setcolor(c,4);
 		        System.out.println(c);
 				
 		    }
@@ -150,7 +146,6 @@ public Stage yy;
 		    public void handle(Event t) {
 		        c = colorPick6.getValue();
 		        //p.get(5).color=c;
-		        setcolor(c,5);
 		        System.out.println(c);
 				
 		    }
@@ -159,7 +154,6 @@ public Stage yy;
 		    public void handle(Event t) {
 		        c = colorPick7.getValue();
 		        //p.get(6).color=c;
-		        setcolor(c,6);
 		        System.out.println(c);
 				
 		    }
@@ -168,7 +162,6 @@ public Stage yy;
 		    public void handle(Event t) {
 		        c = colorPick8.getValue();
 		        //p.get(7).color=c;
-		        setcolor(c,7);
 		        System.out.println(c);
 				
 		    }

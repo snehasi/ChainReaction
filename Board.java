@@ -1,7 +1,14 @@
 
 package application;
 
+import java.io.EOFException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -42,14 +49,14 @@ import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class Board implements Initializable
+public class Board implements Initializable, Serializable
 {
 	
 	@FXML  
 	AnchorPane pane;
 		
 	int n=2;
-	ArrayList<Player> p1=new ArrayList<Player>();
+	//ArrayList<Player> p1=new ArrayList<Player>();
 	ArrayList<Player> p = Settings.getarr();
 	
 	
@@ -74,15 +81,54 @@ public class Board implements Initializable
 	@FXML
 	private ResourceBundle resources;
 	
+	 ///// serialising and deserialising
+	static ArrayList<frame> forser = new ArrayList<frame>();
+	public static void serialize(ArrayList<frame> forser) throws IOException {
+		
+		ObjectOutputStream out = null;
+		try {
+			out= new ObjectOutputStream(new FileOutputStream("//Users//snehasi//eclipse-workspace//finalv1//playlist.txt//"));
+			for(frame s: forser)
+			    out.writeObject(s);
+		}
+		finally {
+			out.close();
+		}
+	}
+	
+	
+	public static ArrayList<frame> deserialize() throws FileNotFoundException, IOException, ClassNotFoundException {
+		ObjectInputStream innn=null;
+		
+		try {
+			
+			innn=new ObjectInputStream(new FileInputStream("//Users//snehasi//eclipse-workspace//finalv1//playlist.txt//"));
+			frame s1 = (frame)innn.readObject();
+			forser.add(s1);
+			while(s1!=null)
+			{
+				s1 = (frame) innn.readObject();
+				forser.add(s1);
+			}
+		}
+		catch(EOFException a)
+		{
+			return forser;
+		}
+		finally {
+			innn.close();
+		}
+		return forser;
+	}
+	
+	///
+
+	
 	
 	@Override
 	public void initialize(URL url, ResourceBundle resource) 
 	{		
 		
-		for(int i=0;i<8;i++)
-		{
-			
-		}
 		Settings s=new Settings();
 		s.adding(p);
 
@@ -117,14 +163,19 @@ public class Board implements Initializable
             	r.setHeight(size);
             	
             	r.setFill(Color.TRANSPARENT);
-            	r.setStroke(p.get(0).color);
+            	r.setStroke(p.get(0).getcolor());
             	
             	Cell c=new Cell();
+            	//
+            	frame f = new frame();//
             	c.x=x;
             	c.y=y;
             	c.r=i;
+            	f.i=i;//
             	c.c=j;
-            	c.rec=r;
+            	f.j=j; //
+            	rec[i][j]=r;
+            	//c.rec=r;
             	c.cmass=c.get_Cmass();
             	Group g=new Group();
             	rotate(g);
@@ -145,7 +196,10 @@ public class Board implements Initializable
         				if(cell[i][j].count==0 || cell[i][j].player==p.get(0))
         					{
         					//System.out.println(p.get(0));
-        					explode(i,j,p.get(0),0);
+        					/////HERE!!!!
+        					//save thearr
+        					explode(i,j,p.get(0).name,0);
+        					
         					//System.out.println("CHANGE IN ADD");
         					//when i call set on finished in transition then the control comes back here 
         					//and then goes back to tansition thats why color is changing again.
@@ -179,6 +233,7 @@ public class Board implements Initializable
             y=y+size;
         }
        // System.out.println("hello");
+        //System.out.println("Enter name of the arraylist");
 	}
 	public void changeColor()
 	{
@@ -195,7 +250,7 @@ public class Board implements Initializable
             for(int j=0;j<6;j++)
             {
             	Cell c=cell[i][j];
-            	c.rec.setStroke(p.get(0).color);
+            	rec[i][j].setStroke(p.get(0).getcolor());
             }
         }
 		
@@ -369,8 +424,14 @@ public class Board implements Initializable
 			}
  	}
 	}*/
-	public void explode(int i,int j,Player player,int q)
-	{
+	public void explode(int i,int j,String name,int q)
+	{	
+		Player player = null;
+		for(Player s:p) {
+			if(name.equals(s.name)) {
+				player=s; 
+			}
+		}
 		System.out.println("ADD");
 		
 		double x=(j*55)+137+(55/2);
@@ -379,7 +440,7 @@ public class Board implements Initializable
 		int m=cell[i][j].cmass;
 		cell[i][j].count+=1;
 		int c=cell[i][j].count;
-		cell[i][j].color=player.color;
+		cell[i][j].setcolor(player.getcolor());
 		cell[i][j].player=player;
 		
 		if(c==2)
@@ -396,7 +457,7 @@ public class Board implements Initializable
 			y+=10;
 			x+=5;
 		}
-		Sphere sphere = MakeSphere(x,y,player.color);
+		Sphere sphere = MakeSphere(x,y,player.getcolor());
 		cell[i][j].g.getChildren().add(sphere);
 		player.count+=1;
 		
@@ -424,7 +485,7 @@ public class Board implements Initializable
 					cell[i][j].g.getChildren().remove(0);
 					Line l=new Line(cell[i][j].x+22.5,cell[i][j].y+22.5,cell[i1[k]][j1[k]].x+22.5,cell[i1[k]][j1[k]].y+22.5);
 									
-					Sphere s = MakeSphere(cell[i][j].x+22.5,cell[i][j].y+22.5,cell[i][j].color);
+					Sphere s = MakeSphere(cell[i][j].x+22.5,cell[i][j].y+22.5,cell[i][j].getcolor());
 					int a=i1[k];
 					int b =j1[k];
 					int d=k;
@@ -461,12 +522,12 @@ public class Board implements Initializable
 							{
 								Sphere s=(Sphere) cell[a][b].g.getChildren().get(d);
 								PhongMaterial phong = new PhongMaterial();
-							    phong.setDiffuseColor(cell[i][j].color);
-							    phong.setSpecularColor(cell[i][j].color);
+							    phong.setDiffuseColor(cell[i][j].getcolor());
+							    phong.setSpecularColor(cell[i][j].getcolor());
 								s.setMaterial(phong);
 							}
 							
-							explode(a,b,cell[i][j].player,q-1-d);
+							explode(a,b,cell[i][j].player.name,q-1-d);
 							//cell[i][j].explode+=1;
 							//System.out.println("Explode---"+cell[i][j].player.color+" "+p.size());
 						}
