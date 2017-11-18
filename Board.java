@@ -1,13 +1,7 @@
+
 package application;
 
-import java.io.EOFException;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -48,65 +42,30 @@ import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-
-
-public class Board implements Initializable, Serializable
+public class Board implements Initializable
 {
 	
 	@FXML  
 	AnchorPane pane;
-	
+		
 	int n=2;
-	ArrayList<Player> p=new ArrayList<Player>();
+	ArrayList<Player> p1=new ArrayList<Player>();
+	ArrayList<Player> p = Settings.getarr();
+	
 	
 	static Cell cell[][]=new Cell[9][6];
+	Rectangle rec[][]=new Rectangle[9][6];
 	int x=137;
 	int y=97;
 	int size=55;
 	
+	@FXML
+	// The reference of inputText will be injected by the FXML loader
+	private TextField inputText;
 	
-	///// serialising and deserialising
-	
-	public static void serialize(ArrayList<frame> forser) throws IOException {
-		
-		ObjectOutputStream out = null;
-		try {
-			out= new ObjectOutputStream(new FileOutputStream("//Users//snehasi//eclipse-workspace//finalv1//playlist.txt//"));
-			for(frame s: forser)
-			    out.writeObject(s);
-		}
-		finally {
-			out.close();
-		}
-	}
-	
-	
-	public static ArrayList<frame> deserialize() throws FileNotFoundException, IOException, ClassNotFoundException {
-		ObjectInputStream innn=null;
-		ArrayList<frame> forser = new ArrayList<frame>();
-		try {
-			
-			innn=new ObjectInputStream(new FileInputStream("//Users//snehasi//eclipse-workspace//finalv1//playlist.txt//"));
-			frame s1 = (frame)innn.readObject();
-			forser.add(s1);
-			while(s1!=null)
-			{
-				s1 = (frame) innn.readObject();
-				forser.add(s1);
-			}
-		}
-		catch(EOFException a)
-		{
-			return forser;
-		}
-		finally {
-			innn.close();
-		}
-		return forser;
-	}
-	
-	///
-	
+	// The reference of outputText will be injected by the FXML loader
+	@FXML
+	private TextArea outputText;
 	
 	// location and resources will be automatically injected by the FXML loader	
 	@FXML
@@ -115,39 +74,33 @@ public class Board implements Initializable, Serializable
 	@FXML
 	private ResourceBundle resources;
 	
-	public static void main(String[] args) throws IOException, ClassNotFoundException {
-		ArrayList<frame> forser = new ArrayList<frame>();
-		frame s1 = new frame("RED", 2);
-		frame s2 = new frame("BLUE",3);
-		forser.add(s1);
-		forser.add(s2);
-		serialize(forser);
-		ArrayList<frame> forser1= new ArrayList<frame>();
-		forser1 =deserialize();
-		
-		//add();
-	}
-	
 	
 	@Override
 	public void initialize(URL url, ResourceBundle resource) 
 	{		
 		
-		//hardcoded 3 players for now
-		Player z=new Player();
-		z.name="1";
-		z.color=Color.RED;
-		p.add(z);
-		
-		z=new Player();
-		z.name="2";
-		z.color=Color.BLUE;
-		p.add(z);
-		
-		z=new Player();
-		z.name="3";
-		z.color=Color.GREEN;
-		p.add(z);
+		for(int i=0;i<8;i++)
+		{
+			
+		}
+		Settings s=new Settings();
+		s.adding(p);
+
+//		//hardcoded 3 players for now
+//		Player z=new Player();
+//		z.name="1";
+//		z.color=Color.RED;
+//		p.add(z);
+//		
+//		z=new Player();
+//		z.name="2";
+//		z.color=Color.BLUE;
+//		p.add(z);
+//		
+//		z=new Player();
+//		z.name="3";
+//		z.color=Color.GREEN;
+//		p.add(z);
 		
 		//System.out.println(p.get(0));
 		//System.out.println(p.get(1));
@@ -192,11 +145,11 @@ public class Board implements Initializable, Serializable
         				if(cell[i][j].count==0 || cell[i][j].player==p.get(0))
         					{
         					//System.out.println(p.get(0));
-        					add(i,j,p.get(0));
+        					explode(i,j,p.get(0),0);
         					//System.out.println("CHANGE IN ADD");
         					//when i call set on finished in transition then the control comes back here 
         					//and then goes back to tansition thats why color is changing again.
-        					System.out.println(p.get(0)+"changeincolor    ");
+        					/*System.out.println(p.get(0)+"changeincolor    ");
         					Player pl=p.remove(0);
         					p.add(pl);
         					for (int l = 0; l < 9; l++) 
@@ -204,10 +157,10 @@ public class Board implements Initializable, Serializable
         			            for(int o=0;o<6;o++)
         			            {
         			            	Cell c=cell[l][o];
-        			            	c.rec.setStroke(p.get(0).color);
+        			            	rec[l][o].setStroke(p.get(0).color);
         			            	System.out.print(p.get(0).color);
         			            }
-        			        }  
+        			        }  */
         					//to show game over as soon as only one player is left
         					if(p.size()==1)
         						dialog(); // function to show alert box
@@ -220,7 +173,7 @@ public class Board implements Initializable, Serializable
             	pane.getChildren().add(g);
             	pane.getChildren().add(r);
             	
-            	x=x+size;
+            	x=x+size;					
             }
             x=137;
             y=y+size;
@@ -247,7 +200,6 @@ public class Board implements Initializable, Serializable
         }
 		
 	}
-	//-
 	public Sphere MakeSphere(double x,double y,Color c) 
 	{
 		//System.out.println(c+"MakeSPhere");		
@@ -286,8 +238,8 @@ public class Board implements Initializable, Serializable
 	    rt.setInterpolator(Interpolator.LINEAR);
         rt.play();
 	}
-	//--
-	public void add(int i,int j,Player player)
+	
+	/*public void add(int i,int j,Player player,int q)
 	{		
 		System.out.println("ADD");
 		
@@ -296,7 +248,6 @@ public class Board implements Initializable, Serializable
 		
 		int m=cell[i][j].cmass;
 		cell[i][j].count+=1;
-		//frame.count=cell[i][j].count;
 		int c=cell[i][j].count;
 		cell[i][j].color=player.color;
 		cell[i][j].player=player;
@@ -321,11 +272,17 @@ public class Board implements Initializable, Serializable
 		if(c==m)
 		{
 			System.out.println("explode");
-			explode(i,j);
+			q=m;
+			explode(i,j,q);
 		}
+		if(q==0)
+			{
+			System.out.println("---------------------------------------");
+			changeColor();
+			}
 	}
-	//--
-	public void explode(int i,int j)
+	
+	public void explode(int i,int j,int q)
 	{
 		//System.out.println("size "+cell[i][j].g.getChildren().size());
 		int i1[]=new int[4];
@@ -336,7 +293,6 @@ public class Board implements Initializable, Serializable
 		i1[1]=i;
 		i1[2]=i+1;
 		i1[3]=i;
-
 		j1[0]=j;
 		j1[1]=j+1;
 		j1[2]=j;
@@ -358,7 +314,7 @@ public class Board implements Initializable, Serializable
 				Sphere s = MakeSphere(cell[i][j].x+22.5,cell[i][j].y+22.5,cell[i][j].color);
 				int a=i1[k];
 				int b =j1[k];
-				
+				int d=k;
 				pane.getChildren().add(s);
 				
 				PathTransition transition=new PathTransition();
@@ -378,17 +334,17 @@ public class Board implements Initializable, Serializable
 						{
 						cell[i][j].player.count+=cell[a][b].count;
 						cell[a][b].player.count-=cell[a][b].count;
-						System.out.println(p.size()+"+"+cell[a][b].player.count+" "+cell[i][j].player.count);
-						System.out.println("+"+cell[a][b].player.color+" "+cell[i][j].player.color);
+						System.out.println(p.size()+" + "+cell[a][b].player.count+" "+cell[i][j].player.count+" + "+cell[a][b].player.color+" "+cell[i][j].player.color);
 						
 						if(cell[a][b].player.count==0)
 						{
+							
 							int q=0;
 							while(p.get(q)!=cell[a][b].player)
 									q++;
 							p.remove(q);
 						}
-						System.out.println(p.size( )+"-");
+						System.out.println(p.size( )+"-^^^^^^^^^^^^^^^^^^^");
 						
 						System.out.println("SIZE *"+cell[a][b].g.getChildren().size()+" "+a+" "+b);
 						for(int d=0;d<cell[a][b].g.getChildren().size();d++)
@@ -400,61 +356,138 @@ public class Board implements Initializable, Serializable
 							s.setMaterial(phong);
 						}
 						}
-						add(a,b,cell[i][j].player); ////here
-						cell[i][j].explode+=1;
-						System.out.println("Explode---"+cell[i][j].player.color+" "+p.size()+" "+cell[i][j].explode);
+						add(a,b,cell[i][j].player,q-1-d);
+						//cell[i][j].explode+=1;
+						//System.out.println("Explode---"+cell[i][j].player.color+" "+p.size());
 					}
-				/*if(cell[i][j].g.getChildren().size()==0)
+				if(cell[i][j].g.getChildren().size()==0)
 				{
 				System.out.println("CHANGE");
 				changeColor();
-				}*/
+				}
 			});
 			}
-		cell[i][j].count=0;
-	}
-	}
-	/*public void explode(int i,int j,Player p)
-	{
-		if(cell[i][j].count==cell[i][j].cmass)
-		{
-			int i1=i-1;
-			int j1=j;
-			if((i1>=0 && i1<=8) && (j1>=0 && j1<=5))
-			{
-				Line l1=new Line(cell[i][j].x+22.5,cell[i][j].y+22.5,cell[i1][j1].x+22.5,cell[i1][j1].y+22.5);
-				Sphere s = MakeSphere(cell[i][j].x+22.5,cell[i][j].y+22.5,cell[i][j].color);
-				
-			}
-					
-			int i2=i;
-			int j2=j+1;
-			if((i1>=0 && i1<=8) && (j1>=0 && j1<=5))
-			{
-				Line l2=new Line(cell[i][j].x+22.5,cell[i][j].y+22.5,cell[i2][j2].x+22.5,cell[i2][j2].y+22.5);
-				Sphere s = MakeSphere(cell[i][j].x+22.5,cell[i][j].y+22.5,cell[i][j].color);
-				
-			}
-			int i3=i+1;
-			int j3=j;
-			if((i1>=0 && i1<=8) && (j1>=0 && j1<=5))
-			{
-				Line l3=new Line(cell[i][j].x+22.5,cell[i][j].y+22.5,cell[i3][j3].x+22.5,cell[i3][j3].y+22.5);
-				Sphere s = MakeSphere(cell[i][j].x+22.5,cell[i][j].y+22.5,cell[i][j].color);
-				
-			}
-			int i4=i;
-			int j4=j-1;
-			if((i1>=0 && i1<=8) && (j1>=0 && j1<=5))
-			{
-				Line l4=new Line(cell[i][j].x+22.5,cell[i][j].y+22.5,cell[i4][j4].x+22.5,cell[i4][j4].y+22.5);
-				Sphere s = MakeSphere(cell[i][j].x+22.5,cell[i][j].y+22.5,cell[i][j].color);
-				
-			}
-			
-		}
+ 	}
 	}*/
-	//
+	public void explode(int i,int j,Player player,int q)
+	{
+		System.out.println("ADD");
+		
+		double x=(j*55)+137+(55/2);
+		double y=(i*55)+97+(55/2);
+		
+		int m=cell[i][j].cmass;
+		cell[i][j].count+=1;
+		int c=cell[i][j].count;
+		cell[i][j].color=player.color;
+		cell[i][j].player=player;
+		
+		if(c==2)
+		{
+			x+=10;
+		}
+		else if(c==3)
+		{
+			y-=10;
+			x+=5;
+		}
+		else if(c==4)
+		{
+			y+=10;
+			x+=5;
+		}
+		Sphere sphere = MakeSphere(x,y,player.color);
+		cell[i][j].g.getChildren().add(sphere);
+		player.count+=1;
+		
+		if(c==m)
+		{
+			int i1[]=new int[4];
+			int j1[]=new int[4];
+			
+			
+			i1[0]=i-1;
+			i1[1]=i;
+			i1[2]=i+1;
+			i1[3]=i;
+
+			j1[0]=j;
+			j1[1]=j+1;
+			j1[2]=j;
+			j1[3]=j-1;
+			
+			for(int k=0;k<4;k++)
+			{
+				//System.out.println(i1[k]+" "+j1[k]);
+				if((i1[k]>=0 && i1[k]<=8) && (j1[k]>=0 && j1[k]<=5))
+				{
+					cell[i][j].g.getChildren().remove(0);
+					Line l=new Line(cell[i][j].x+22.5,cell[i][j].y+22.5,cell[i1[k]][j1[k]].x+22.5,cell[i1[k]][j1[k]].y+22.5);
+									
+					Sphere s = MakeSphere(cell[i][j].x+22.5,cell[i][j].y+22.5,cell[i][j].color);
+					int a=i1[k];
+					int b =j1[k];
+					int d=k;
+					pane.getChildren().add(s);
+					
+					
+					if(cell[a][b].count>0)
+					{
+					cell[i][j].player.count+=cell[a][b].count;
+					cell[a][b].player.count-=cell[a][b].count;
+					System.out.println(p.size()+" + "+cell[a][b].player.count+" "+cell[i][j].player.count+" + "+cell[a][b].player.color+" "+cell[i][j].player.color);
+					}
+					if(cell[a][b].player!=null && cell[a][b].player.count==0)
+					{
+						int o=0;
+						while(p.get(o)!=cell[a][b].player)
+								o++;
+						p.remove(o);
+					}
+					System.out.println(p.size( )+"-^^^^^^^^^^^^^^^^^^^");
+					
+					PathTransition transition=new PathTransition();
+					transition.setNode(s);
+					transition.setDuration(Duration.seconds(0.5));
+					transition.setPath(l);
+					transition.setCycleCount(1);
+					transition.play();
+					transition.setOnFinished(new EventHandler<ActionEvent>() {
+						public void handle(ActionEvent event) 
+						{
+							pane.getChildren().remove(pane.getChildren().lastIndexOf(s));
+							System.out.println("SIZE *"+cell[a][b].g.getChildren().size()+" "+a+" "+b);
+							for(int d=0;d<cell[a][b].g.getChildren().size();d++)
+							{
+								Sphere s=(Sphere) cell[a][b].g.getChildren().get(d);
+								PhongMaterial phong = new PhongMaterial();
+							    phong.setDiffuseColor(cell[i][j].color);
+							    phong.setSpecularColor(cell[i][j].color);
+								s.setMaterial(phong);
+							}
+							
+							explode(a,b,cell[i][j].player,q-1-d);
+							//cell[i][j].explode+=1;
+							//System.out.println("Explode---"+cell[i][j].player.color+" "+p.size());
+						}
+					/*if(cell[i][j].g.getChildren().size()==0)
+					{
+					System.out.println("CHANGE");
+					changeColor();
+					}*/
+				});
+				}
+	 	}
+			cell[i][j].count=0;
+		}
+		
+		if(q==0)
+			{
+			System.out.println("---------------------------------------");
+			changeColor();
+			}
+	}
+	
 	public void dialog()
 	{
 		if(p.size()==1)
@@ -497,7 +530,6 @@ public class Board implements Initializable, Serializable
 			}
 		}
 	}
-	//
 	//back to menu page
 		public void backtomain() throws IOException {
 			Stage primaryStage=Main.getstage();

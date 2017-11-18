@@ -38,17 +38,40 @@ public class Cell implements Serializable
 	public int getcount() {
 		return count;
 	}
+	public String getcolorasstring() {
+		return color.toString();
+	}
+	public Color getcolor() {
+		return color;
+	}
 }
 class frame implements Serializable {
-	public frame(String color, int count) {
+	private String name;
+	private int i;
+	private int j;
+	public frame(String name, int count,int i,int j) {
 		// TODO Auto-generated constructor stub
 		this.count=count;
-		this.color=color;
+		this.name=name;
+		this.i=i;
+		this.j=j;
 	}
-	Player player=new Player();
+	//Player player=new Player();
 	Cell obj = new Cell();
 	int count=obj.getcount();
-	String color = player.getcolorasstring();
+	//String color;// = obj.getcolorasstring();
+	public String getname() {
+		return name;
+	}
+	public int getcount() {
+		return count;
+	}
+	public int geti() {
+		return i;
+	}
+	public int getj() {
+		return j;
+	}
 	//count and color attributes
 	
 }
