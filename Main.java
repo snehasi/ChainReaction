@@ -138,40 +138,37 @@ public class Main extends Application implements Initializable {
 	public void initialize(java.net.URL location, ResourceBundle resources) {
 		
 		
-		Player one =new Player();
-		one.setColor(Color.RED);
-		one.name="1 Player Game";
-		
 		Player two = new Player();
-		two.setColor(Color.BLUE);
+		two.setcolor(Color.BLUE);
 		two.name="2 Player Game";
 		
 		Player three = new Player();
-		three.setColor(Color.GREEN);
+		three.setcolor(Color.WHITE);
 		three.name="3 Player Game";
 		
 		Player four = new Player();
-		four.setColor(Color.YELLOW);
+		four.setcolor(Color.YELLOW);
 		four.name="4 Player Game";
 		
 		Player five = new Player();
-		five.setColor(Color.WHITE);
+		five.setcolor(Color.PINK);
 		five.name="5 Player Game";
 		
 		Player six = new Player();
-		six.setColor(Color.ORANGE);
+		six.setcolor(Color.ORANGE);
 		six.name="6 Player Game";
 		
 		Player seven = new Player();
-		seven.setColor(Color.PURPLE);
+		seven.setcolor(Color.GREEN);
 		seven.name="7 Player Game";
 		
 		Player eight = new Player();
-		eight.setColor(Color.BROWN);
+		eight.setcolor(Color.BROWN);
 		eight.name="8 Player Game";
 		//p.addAll(one,two,three);
+		//p.addAll(one,two,three);
 		
-		Settings.p.add(one);
+		//Settings.p.add(one);
 		Settings.p.add(two);
 		Settings.p.add(three);
 		Settings.p.add(four);

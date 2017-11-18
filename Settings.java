@@ -23,6 +23,10 @@ public class Settings extends Application
 	static ArrayList<Player> p=new ArrayList<Player>();
 	//ArrayList
 	//Player one = new Player("",);
+	public static void setcolor(Color c,int i)
+	{
+		p.get(i).setcolor(c);
+	}
 	
 	public static ArrayList<Player> getarr()
 	{
@@ -59,14 +63,14 @@ public Stage yy;
 		colorPick1.setOnAction(new EventHandler() {
 		    public void handle(Event t) {
 		        c = colorPick1.getValue();
-		        p.get(0).setColor(c);
+		        p.get(0).setcolor(c);
 		        System.out.println(c);
 		    }
 		});
 		colorPick2.setOnAction(new EventHandler() {
 		    public void handle(Event t) {
 		        c = colorPick2.getValue();
-		        p.get(1).setColor(c);
+		        p.get(1).setcolor(c);
 		        System.out.println(c);
 				
 		    }
@@ -74,7 +78,7 @@ public Stage yy;
 		colorPick3.setOnAction(new EventHandler() {
 		    public void handle(Event t) {
 		        c = colorPick3.getValue();
-		        p.get(2).setColor(c);
+		        p.get(2).setcolor(c);
 		        System.out.println(c);
 					
 		    }
@@ -82,7 +86,7 @@ public Stage yy;
 		colorPick4.setOnAction(new EventHandler() {
 		    public void handle(Event t) {
 		        c = colorPick4.getValue();
-		        p.get(3).setColor(c);
+		        p.get(3).setcolor(c);
 		        System.out.println(c);
 				
 		    }
@@ -90,7 +94,7 @@ public Stage yy;
 		colorPick5.setOnAction(new EventHandler() {
 		    public void handle(Event t) {
 		        c = colorPick5.getValue();
-		        p.get(4).setColor(c);
+		        p.get(4).setcolor(c);
 		        System.out.println(c);
 				
 		    }
@@ -98,7 +102,7 @@ public Stage yy;
 		colorPick6.setOnAction(new EventHandler() {
 		    public void handle(Event t) {
 		        c = colorPick6.getValue();
-		        p.get(5).setColor(c);
+		        p.get(5).setcolor(c);
 		        System.out.println(c);
 				
 		    }
@@ -106,7 +110,7 @@ public Stage yy;
 		colorPick7.setOnAction(new EventHandler() {
 		    public void handle(Event t) {
 		        c = colorPick7.getValue();
-		        p.get(6).setColor(c);
+		        p.get(6).setcolor(c);
 		        System.out.println(c);
 				
 		    }
@@ -114,8 +118,9 @@ public Stage yy;
 		colorPick8.setOnAction(new EventHandler() {
 		    public void handle(Event t) {
 		        c = colorPick8.getValue();
-		        p.get(7).setColor(c);
+		        p.get(7).setcolor(c);
 		        System.out.println(c);
+				
 		    }
 		});
 	}
