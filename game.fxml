@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TitledPane animated="false" layoutX="-151.0" layoutY="-105.0" prefHeight="476.0" prefWidth="362.0" text="Chain Reaction" textFill="#030303">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="406.0" prefWidth="273.0" style="-fx-background-color: #000000;">
+               <children>
+                  <Text fill="#fcf9f9" layoutX="130.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chain Reaction" />
+                  <ComboBox layoutX="106.0" layoutY="62.0" prefWidth="150.0" promptText="2 Player Game" style="-fx-background-color: #FFFF33" />
+                  
+                  <Button layoutX="66.0" layoutY="100.0" mnemonicParsing="false" style="-fx-background-color: #FFFF33" text="Play" />
+                  <Button layoutX="181.0" layoutY="100.0" mnemonicParsing="false" style="-fx-background-color: #FFFF33" text="Play with HD Grid" />
+                  <TextArea layoutX="66.0" layoutY="137.0" prefHeight="190.0" prefWidth="241.0" style="-fx-background-color: #FFFF33;" text="In this game, you have to win by&#10;taking over the board through&#10;balls.&#10;Players take turns to place balls,&#10;a cell with critical mass will burst&#10;taking over surrounding cells.&#10;Player can only place balls in cell &#10;with same colour or empty cell.&#10;Whoever has the last balls remaining&#10;wins. " />
+                  <Button layoutX="222.0" layoutY="396.0" mnemonicParsing="false" style="-fx-background-color: #FFFF33" text="Player Settings" />
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+   </children>
+</AnchorPane>

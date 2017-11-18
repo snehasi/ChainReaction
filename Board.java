@@ -60,8 +60,7 @@ public class Board implements Initializable, Serializable
 	
 	
 	static Cell cell[][];
-	Rectangle rec[][];
-	
+	static Rectangle rec[][];
 	int x=137;
 	int y=97;
 	
@@ -94,7 +93,6 @@ public class Board implements Initializable, Serializable
 			out.close();
 		}
 	}
-	
 	
 	public static ArrayList<frame> deserialize() throws FileNotFoundException, IOException, ClassNotFoundException {
 		ObjectInputStream innn=null;
@@ -131,8 +129,10 @@ public class Board implements Initializable, Serializable
 		num=Main.num.charAt(0)-48;
 		n=Integer.valueOf(Main.gr.substring(0,Main.gr.indexOf('x')));
 		m=Integer.valueOf(Main.gr.substring(Main.gr.indexOf('x')+1));
+	
 		cell=new Cell[n][m];
 		rec=new Rectangle[n][m];
+		
 		System.out.println(n+" "+m+" "+size);
 		if(n==15)
 		{
@@ -146,6 +146,7 @@ public class Board implements Initializable, Serializable
 		{
 			System.out.println(i);
 			p.add(Settings.p.get(i));
+			System.out.println(p.get(i).getcolor());
 		}
 		
         for (int i = 0; i <n; i++) 
@@ -167,7 +168,6 @@ public class Board implements Initializable, Serializable
             	c.r=i;
             	c.c=j;
             	//c.rec=r;
-            	rec[i][j]=r;
             	c.cmass=c.get_Cmass();
             	Group g=new Group();
             	/*g.prefHeight(size);
@@ -214,6 +214,7 @@ public class Board implements Initializable, Serializable
         		});
             	c.g=g;
             	cell[i][j]=c;
+            	rec[i][j]=r;
             	pane.getChildren().add(g);
             	pane.getChildren().add(r);
             	
@@ -227,14 +228,14 @@ public class Board implements Initializable, Serializable
 	}
 	public void changeColor()
 	{
-		System.out.println(p.get(0)+"changeincolor");
+		System.out.println(p.get(0)+" changeincolor "+p.get(0).color);
 		Player pl=p.remove(0);
 		p.add(pl);
 		for (int i = 0; i < n; i++) 
         {
             for(int j=0;j<m;j++)
             {
-            	Cell c=cell[i][j];
+            	System.out.println(p.get(0).getcolor());
             	rec[i][j].setStroke(p.get(0).getcolor());
             }
         }
@@ -258,9 +259,7 @@ public class Board implements Initializable, Serializable
 	    
 	    //pane.getChildren().add(sphere);	 
 	    }
-	
-        
-	
+
 	public void rotate(Group root)
 	{
 		Rotate rotate=new Rotate();

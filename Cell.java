@@ -35,35 +35,45 @@ public class Cell implements Serializable
 			return 4;
 		}
 	}
-	public int getcount() {
+	public int getcount() 
+	{
 		return count;
 	}
+	
 	public String getcolorasstring() {
 		return color.toString();
 	}
 	
 	public Color getcolor() {
-		Color c=Color.valueOf(color);
+		Color c= Color.valueOf(color);
 		return c;
 	}
-	public void setcolor(Color c) {
+	public void setColor(Color c)
+	{
 		color=c.toString();
 	}
+	
 }
 class frame implements Serializable {
-	String name;
-	int i;
-	int j;
-	int q;
-	
+	private String name;
+	private int i;
+	private int j;
+	public frame(String name, int count,int i,int j) {
+		// TODO Auto-generated constructor stub
+		this.count=count;
+		this.name=name;
+		this.i=i;
+		this.j=j;
+	}
 	//Player player=new Player();
-	
+	Cell obj = new Cell();
+	int count=obj.getcount();
 	//String color;// = obj.getcolorasstring();
 	public String getname() {
 		return name;
 	}
-	public int getq() {
-		return q;
+	public int getcount() {
+		return count;
 	}
 	public int geti() {
 		return i;

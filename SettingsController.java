@@ -24,70 +24,7 @@ import javafx.stage.Stage;
 
 
 public class SettingsController {
-	public Stage yy;
 	
-	private MainController maincont;
-	@FXML
-	private Rectangle rect;
-	@FXML
-	private ColorPicker colorPick;
-	//public Color c;
-	//color -- colorPick , soundeffect, vibration
-	Color c;
-	public void getcolorfromplaysettings() {
-		colorPick.setOnAction(new EventHandler() {
-		    public void handle(Event t) {
-		        c = colorPick.getValue();
-		        
-		    }
-
-			
-		});
-		System.out.println(c);
-	}
-	//back to main from settings
-	public void backtomainfromsettings() throws IOException {
-		Stage primaryStage=Main.getstage();
-		//bo.start(pr);
-		Parent loader =FXMLLoader.load(getClass().getResource("/application/Main.fxml"));
-		Scene scene=new Scene(loader);
-		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		primaryStage.setScene(scene);
-		primaryStage.sizeToScene();
-		 
-        primaryStage.show();
-        
-	}
-	//back to grid 1 from settings 
-	public void backtogrid1fromsettings() throws IOException {
-		Stage primaryStage=maincont.getstageofgrid1();
-		//bo.start(pr);
-		Parent loader =FXMLLoader.load(getClass().getResource("/application/Grid1.fxml"));
-		Scene scene=new Scene(loader);
-		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		primaryStage.setScene(scene);
-		primaryStage.sizeToScene();
-		
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Information Dialog");
-		alert.setHeaderText(null);
-		alert.setContentText("New Settings will be applied from new game!");
-
-		alert.showAndWait();
-		 
-        primaryStage.show();
-        
-	}
-	public void backtosettingsfromplaysettings() throws IOException {
-		Stage primaryStage=Main.getstage();
-		//bo.start(pr);
-		Parent loader =FXMLLoader.load(getClass().getResource("/application/Settings.fxml"));
-		Scene scene=new Scene(loader);
-		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		primaryStage.setScene(scene);
-		primaryStage.sizeToScene();
-        primaryStage.show();
-	}
 	
 	
 }
