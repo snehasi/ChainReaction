@@ -7,7 +7,7 @@ import javafx.scene.paint.Color;
 public class Player implements Serializable
 {
 	String name;
-	SettingsController cx;
+	//SettingsController cx;
 	//Color color;//=cx.getcolorfromplaysettings();
 	String color;
 	//Boolean vibration;

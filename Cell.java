@@ -50,27 +50,3 @@ public class Cell implements Serializable
 		color=c.toString();
 	}
 }
-class frame implements Serializable {
-	String name;
-	int i;
-	int j;
-	int q;
-	
-	//Player player=new Player();
-	
-	//String color;// = obj.getcolorasstring();
-	public String getname() {
-		return name;
-	}
-	public int getq() {
-		return q;
-	}
-	public int geti() {
-		return i;
-	}
-	public int getj() {
-		return j;
-	}
-	//count and color attributes
-	
-}

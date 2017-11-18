@@ -21,7 +21,7 @@
             <Image url="@logo.png" />
          </image>
       </ImageView>
-      <Button layoutX="448.0" layoutY="17.0" mnemonicParsing="false" style="-fx-background-color: #242526;" text="UNDO" textFill="WHITE">
+      <Button fx:id="undo" layoutX="448.0" layoutY="17.0" mnemonicParsing="false" style="-fx-background-color: #242526;" text="UNDO" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

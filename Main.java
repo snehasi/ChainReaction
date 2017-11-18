@@ -31,8 +31,6 @@ import java.lang.String;
 public class Main extends Application implements Initializable {
 	static Stage xx = new Stage();
 	
-	private Main main;
-	private Grid1 bo;
 	public static Stage yyy;
 	
 //	Stage thisStage;
@@ -89,26 +87,32 @@ public class Main extends Application implements Initializable {
 		        "7 Player Game",
 		        "8 Player Game"
 		    );
+	static String num;
+	@FXML
+	private void combo(ActionEvent event)
+	{
+		num=playerr.getValue();
+		playerr.setPromptText(num);
+		System.out.println(num);
+	}
 	
+	@FXML
+	private ComboBox<String> grid;
+	ObservableList<String> grids = 
+		    FXCollections.observableArrayList(
+		        "9x6",
+		        "15x10"
+		    );
+	static String gr;
 	
-	
-
-	
-	//resume button
-	public void savestate() throws IOException {
-		Stage primaryStage=Grid1.getstageee();
-		//Scene pp=bo.getscene();
-		
-		Parent loader =FXMLLoader.load(getClass().getResource("/application/Grid1.fxml"));
-		Scene pp=new Scene(loader);
-		pp.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		primaryStage.setScene(pp);
-		primaryStage.sizeToScene();
-        primaryStage.show();
+	@FXML
+	private void comb(ActionEvent event)
+	{
+		gr=grid.getValue();
+		grid.setPromptText(num);
+		System.out.println(gr);
 	}
 
-	
-	
 	
 	public void start(Stage primaryStage) throws IOException
 	{
@@ -132,7 +136,49 @@ public class Main extends Application implements Initializable {
 	}
 	@Override
 	public void initialize(java.net.URL location, ResourceBundle resources) {
-		playerr.setItems(options);// TODO Auto-generated method stub
 		
+		
+		Player two = new Player();
+		two.setcolor(Color.BLUE);
+		two.name="2 Player Game";
+		
+		Player three = new Player();
+		three.setcolor(Color.WHITE);
+		three.name="3 Player Game";
+		
+		Player four = new Player();
+		four.setcolor(Color.YELLOW);
+		four.name="4 Player Game";
+		
+		Player five = new Player();
+		five.setcolor(Color.PINK);
+		five.name="5 Player Game";
+		
+		Player six = new Player();
+		six.setcolor(Color.ORANGE);
+		six.name="6 Player Game";
+		
+		Player seven = new Player();
+		seven.setcolor(Color.GREEN);
+		seven.name="7 Player Game";
+		
+		Player eight = new Player();
+		eight.setcolor(Color.BROWN);
+		eight.name="8 Player Game";
+		//p.addAll(one,two,three);
+		//p.addAll(one,two,three);
+		
+		//Settings.p.add(one);
+		Settings.p.add(two);
+		Settings.p.add(three);
+		Settings.p.add(four);
+		Settings.p.add(five);
+		Settings.p.add(six);
+		Settings.p.add(seven);
+		Settings.p.add(eight);
+		
+		playerr.setItems(options);
+		grid.setItems(grids);
+		// TODO Auto-generated method stub
 	}
 }
