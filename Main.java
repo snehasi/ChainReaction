@@ -1,30 +1,119 @@
 package application;
 	
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 import javax.print.DocFlavor.URL;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.collections.FXCollections;
+import java.lang.String;
 
 
-public class Main extends Application {
+public class Main extends Application implements Initializable {
 	static Stage xx = new Stage();
-	int n=2;
-	@Override
+	
+	public static Stage yyy;
+	
+//	Stage thisStage;
+//
+//	public void setStage (Stage stage){
+//	    thisStage = stage;
+//	}
+	//small grid
+	@FXML void gotoscreen2() throws IOException {
+		Stage primaryStage=Main.getstage();
+		//bo.start(pr);
+		Parent loader =FXMLLoader.load(getClass().getResource("/application/Grid1.fxml"));
+		Scene scene=new Scene(loader);
+		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		primaryStage.setScene(scene);
+		primaryStage.sizeToScene();
+        primaryStage.show();
+        yyy=primaryStage;
+	}
+	public static Stage getstageofgrid1() {
+		return yyy;
+	}
+	//big grid
+	@FXML void gotoscreen3() throws IOException {
+		Stage primaryStage=Main.getstage();
+		//bo.start(pr);
+		Parent loader =FXMLLoader.load(getClass().getResource("/application/Grid2.fxml"));
+		Scene scene=new Scene(loader);
+		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		primaryStage.setScene(scene);
+		primaryStage.sizeToScene();
+        primaryStage.show();
+	}
+	//settings
+	@FXML void gotoscreen21() throws IOException {
+		Stage primaryStage=Main.getstage();
+		//bo.start(pr);
+		Parent loader =FXMLLoader.load(getClass().getResource("/application/Settings.fxml"));
+		Scene scene=new Scene(loader);
+		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		primaryStage.setScene(scene);
+		primaryStage.sizeToScene();
+        primaryStage.show();
+	}
+	@FXML
+	private ComboBox<String> playerr;
+	ObservableList<String> options = 
+		    FXCollections.observableArrayList(
+		        "2 Player Game",
+		        "3 Player Game",
+		        "4 Player Game",
+		        "5 Player Game",
+		        "6 Player Game",
+		        "7 Player Game",
+		        "8 Player Game"
+		    );
+	static String num;
+	@FXML
+	private void combo(ActionEvent event)
+	{
+		num=playerr.getValue();
+		playerr.setPromptText(num);
+		System.out.println(num);
+	}
+	
+	@FXML
+	private ComboBox<String> grid;
+	ObservableList<String> grids = 
+		    FXCollections.observableArrayList(
+		        "9x6",
+		        "15x10"
+		    );
+	static String gr;
+	
+	@FXML
+	private void comb(ActionEvent event)
+	{
+		gr=grid.getValue();
+		grid.setPromptText(num);
+		System.out.println(gr);
+	}
+
+	
 	public void start(Stage primaryStage) throws IOException
 	{
 		Parent loader =FXMLLoader.load(getClass().getResource("/application/Main.fxml"));
@@ -41,161 +130,58 @@ public class Main extends Application {
 		return xx;
 	}
 	
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
-	public static Stage yyy;
-	
-
-	@FXML
-	Button grid1;
-	@FXML
-	Button grid2;
-	int r,c;
-	//small grid
-	@FXML void gotoscreen2() throws IOException 
-	{
-		grid1.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				r=9;
-				c=6;
-				System.out.println(n+" "+r+" "+c);
-			}
-		});
-		grid2.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				r=15;
-				c=10;
-				System.out.println(n+" "+r+" "+c);
-			}
-		});
+	@Override
+	public void initialize(java.net.URL location, ResourceBundle resources) {
 		
-		Grid1 g=new Grid1(n,r,c);
-		Stage primaryStage=Main.getstage();
-		//bo.start(pr);
-		Parent loader =FXMLLoader.load(getClass().getResource("/application/Grid1.fxml"));
-		Scene scene=new Scene(loader);
-		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		primaryStage.setScene(scene);
-		primaryStage.sizeToScene();
-        primaryStage.show();
-        yyy=primaryStage;
-	}
-	@FXML
-	public MenuButton menu;
-	@FXML
-	private MenuItem two;
-	@FXML
-	private MenuItem three;
-	@FXML
-	private MenuItem four;
-	@FXML
-	private MenuItem five;
-	@FXML
-	private MenuItem six;
-	@FXML
-	private MenuItem seven;
-	@FXML
-	private MenuItem eight;
-	@FXML
-	public void getNumPlayer() {	
-		three.setOnAction(new EventHandler() {
-			@Override
-			public void handle(Event event) {
-				// TODO Auto-generated method stub
-				System.out.println("Option 2 selected");
-				menu.setText(three.getText());
-				n=3;
-			}
-		});
-		two.setOnAction(new EventHandler() {
-			@Override
-			public void handle(Event event) {
-				// TODO Auto-generated method stub
-				System.out.println("Option 2 selected");
-				menu.setText(two.getText());
-				n=2;
-			}
-		});
-		four.setOnAction(new EventHandler() {
-			@Override
-			public void handle(Event event) {
-				// TODO Auto-generated method stub
-				System.out.println("Option 2 selected");
-				menu.setText(four.getText());
-				n=4;
-			}
-		});
-		five.setOnAction(new EventHandler() {
-			@Override
-			public void handle(Event event) {
-				// TODO Auto-generated method stub
-				System.out.println("Option 2 selected");
-				menu.setText(five.getText());
-				n=5;
-			}
-		});
-		six.setOnAction(new EventHandler() {
-			@Override
-			public void handle(Event event) {
-				// TODO Auto-generated method stub
-				System.out.println("Option 2 selected");
-				menu.setText(six.getText());
-				n=6;
-			}
-		});
-		seven.setOnAction(new EventHandler() {
-			@Override
-			public void handle(Event event) {
-				// TODO Auto-generated method stub
-				System.out.println("Option 2 selected");
-				menu.setText(seven.getText());
-				n=7;
-			}
-		});
-		eight.setOnAction(new EventHandler() {
-			@Override
-			public void handle(Event event) {
-				// TODO Auto-generated method stub
-				System.out.println("Option 2 selected");
-				menu.setText(eight.getText());
-				n=8;
-			}
-		});
-			
-	}
-	
-	public static Stage getstageofgrid1() {
-		return yyy;
-	}
-	//big grid
-	
-	//settings
-	@FXML void gotoscreen21() throws IOException {
 		
-		Stage primaryStage=Main.getstage();
-		//bo.start(pr);
-		Parent loader =FXMLLoader.load(getClass().getResource("/application/Settings.fxml"));
-		Scene scene=new Scene(loader);
-		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		primaryStage.setScene(scene);
-		primaryStage.sizeToScene();
-        primaryStage.show();
-	}
-	//resume button
-	public void savestate() throws IOException {
-		Stage primaryStage=Grid1.getstageee();
-		//Scene pp=bo.getscene();
+		Player one =new Player();
+		one.color=Color.RED;
+		one.name="1 Player Game";
 		
-		Parent loader =FXMLLoader.load(getClass().getResource("/application/Grid1.fxml"));
-		Scene pp=new Scene(loader);
-		pp.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		primaryStage.setScene(pp);
-		primaryStage.sizeToScene();
-        primaryStage.show();
+		Player two = new Player();
+		two.color=Color.BLUE;
+		two.name="2 Player Game";
+		
+		Player three = new Player();
+		three.color=Color.GREEN;
+		three.name="3 Player Game";
+		
+		Player four = new Player();
+		four.color=Color.YELLOW;
+		four.name="4 Player Game";
+		
+		Player five = new Player();
+		five.color=Color.WHITE;
+		five.name="5 Player Game";
+		
+		Player six = new Player();
+		six.color=Color.ORANGE;
+		six.name="6 Player Game";
+		
+		Player seven = new Player();
+		seven.color=Color.PURPLE;
+		seven.name="7 Player Game";
+		
+		Player eight = new Player();
+		eight.color=Color.BROWN;
+		eight.name="8 Player Game";
+		//p.addAll(one,two,three);
+		
+		Settings.p.add(one);
+		Settings.p.add(two);
+		Settings.p.add(three);
+		Settings.p.add(four);
+		Settings.p.add(five);
+		Settings.p.add(six);
+		Settings.p.add(seven);
+		Settings.p.add(eight);
+		
+		playerr.setItems(options);
+		grid.setItems(grids);
+		// TODO Auto-generated method stub
 	}
-	
 }

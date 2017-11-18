@@ -24,14 +24,6 @@ import javafx.scene.shape.Rectangle;
 public class Grid1 extends Application {
 	static Stage yo = new Stage(); 
 	static Scene yooo;
-	int n,m,num;
-	Grid1(int num,int n, int m)
-	{
-		this.num=num;
-		this.n=n;
-		this.m=m;
-	}
-	
 	@Override
 	public void start(Stage prStage) throws IOException
 	{

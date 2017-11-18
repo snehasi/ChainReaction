@@ -18,31 +18,26 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 
-public class Settings extends Application 
+public class Settings extends Application
 {
-	ArrayList<Player> p=new ArrayList<Player>();
-	Stage x=new Stage();
-	
-	@Override
-	public void start(Stage primaryStage) throws IOException
+	static ArrayList<Player> p=new ArrayList<Player>();
+	//ArrayList
+	//Player one = new Player("",);
+	public static void setcolor(Color c,int i)
 	{
-		Parent loader =FXMLLoader.load(getClass().getResource("/application/Settings.fxml"));
-		Scene scene=new Scene(loader);
-		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		primaryStage.setScene(scene);
-		primaryStage.sizeToScene();
-        primaryStage.show();
-        x=primaryStage;
+		p.get(i).color=c;
 	}
 	
-	public static void main(String[] args) 
+	public static ArrayList<Player> getarr()
 	{
-		launch(args);
+		return p;
 	}
 	
-	public Stage yy;
+public Stage yy;
 	
 	private Main maincont;
+	@FXML
+	private Rectangle rect;
 	@FXML
 	private ColorPicker colorPick1;
 	@FXML
@@ -59,22 +54,23 @@ public class Settings extends Application
 	private ColorPicker colorPick7;
 	@FXML
 	private ColorPicker colorPick8;
-
+	
 	//public Color c;
 	//color -- colorPick , soundeffect, vibration
 	Color c;
-	public Color getcolorfromplaysettings() {
+	public void getcolorfromplaysettings() {
 		
 		colorPick1.setOnAction(new EventHandler() {
 		    public void handle(Event t) {
 		        c = colorPick1.getValue();
+		        p.get(0).color=c;
 		        System.out.println(c);
-				
 		    }
 		});
 		colorPick2.setOnAction(new EventHandler() {
 		    public void handle(Event t) {
 		        c = colorPick2.getValue();
+		        p.get(1).color=c;
 		        System.out.println(c);
 				
 		    }
@@ -82,13 +78,15 @@ public class Settings extends Application
 		colorPick3.setOnAction(new EventHandler() {
 		    public void handle(Event t) {
 		        c = colorPick3.getValue();
+		        p.get(2).color=c;
 		        System.out.println(c);
-				
+					
 		    }
 		});
 		colorPick4.setOnAction(new EventHandler() {
 		    public void handle(Event t) {
 		        c = colorPick4.getValue();
+		        p.get(3).color=c;
 		        System.out.println(c);
 				
 		    }
@@ -96,6 +94,7 @@ public class Settings extends Application
 		colorPick5.setOnAction(new EventHandler() {
 		    public void handle(Event t) {
 		        c = colorPick5.getValue();
+		        p.get(4).color=c;
 		        System.out.println(c);
 				
 		    }
@@ -103,6 +102,7 @@ public class Settings extends Application
 		colorPick6.setOnAction(new EventHandler() {
 		    public void handle(Event t) {
 		        c = colorPick6.getValue();
+		        p.get(5).color=c;
 		        System.out.println(c);
 				
 		    }
@@ -110,6 +110,7 @@ public class Settings extends Application
 		colorPick7.setOnAction(new EventHandler() {
 		    public void handle(Event t) {
 		        c = colorPick7.getValue();
+		        p.get(6).color=c;
 		        System.out.println(c);
 				
 		    }
@@ -117,13 +118,14 @@ public class Settings extends Application
 		colorPick8.setOnAction(new EventHandler() {
 		    public void handle(Event t) {
 		        c = colorPick8.getValue();
+		        p.get(7).color=c;
 		        System.out.println(c);
 				
 		    }
 		});
-		return c;
-		
 	}
+	
+	
 	//back to main from settings
 	public void backtomainfromsettings() throws IOException {
 		Stage primaryStage=Main.getstage();
@@ -168,4 +170,73 @@ public class Settings extends Application
         primaryStage.show();
 	}
 	
+	@Override
+	public void start(Stage primaryStage) throws IOException
+	{
+		Parent loader =FXMLLoader.load(getClass().getResource("/application/Settings.fxml"));
+		Scene scene=new Scene(loader);
+		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		primaryStage.setScene(scene);
+		primaryStage.sizeToScene();
+        primaryStage.show();
+	}
+	
+	public static void main(String[] args) 
+	{
+//		Player two = new Player();
+//		two.color=Color.BLUE;
+//		two.name="2 Player Game";
+//		
+//		Player three = new Player();
+//		three.color=Color.WHITE;
+//		three.name="3 Player Game";
+//		
+//		Player four = new Player();
+//		four.color=Color.YELLOW;
+//		four.name="4 Player Game";
+//		
+//		Player five = new Player();
+//		five.color=Color.PINK;
+//		five.name="5 Player Game";
+//		
+//		Player six = new Player();
+//		six.color=Color.ORANGE;
+//		six.name="6 Player Game";
+//		
+//		Player seven = new Player();
+//		seven.color=Color.GREEN;
+//		seven.name="7 Player Game";
+//		
+//		Player eight = new Player();
+//		eight.color=Color.BROWN;
+//		eight.name="8 Player Game";
+//		//p.addAll(one,two,three);
+//		
+//		//p.add(one);
+//		p.add(two);
+//		p.add(three);
+//		p.add(four);
+//		p.add(five);
+//		p.add(six);
+//		p.add(seven);
+//		p.add(eight);
+		
+		launch(args);
+	}
 }
+/*<ColorPicker fx:id="colorPick1" layoutX="447.0" layoutY="138.0" onAction="#getcolorfromplaysettings" onMouseDragReleased="#getcolorfromplaysettings" onMouseReleased="#getcolorfromplaysettings" onTouchPressed="#getcolorfromplaysettings" prefHeight="39.0" prefWidth="129.0" />
+      <ColorPicker fx:id="colorPick2" layoutX="447.0" layoutY="196.0" onAction="#getcolorfromplaysettings" prefHeight="39.0" prefWidth="129.0" />
+      <Button layoutX="14.0" layoutY="196.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="414.0" style="-fx-background-color: #242526;" text="Player 2 Settings : Customization for Player 2" textFill="WHITE" />
+      <ColorPicker fx:id="colorPick3" layoutX="447.0" layoutY="252.0" onAction="#getcolorfromplaysettings" prefHeight="39.0" prefWidth="129.0" />
+      <Button layoutX="14.0" layoutY="252.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="414.0" style="-fx-background-color: #242526;" text="Player 3 Settings : Customization for Player 3" textFill="WHITE" />
+      <ColorPicker fx:id="colorPick4" layoutX="447.0" layoutY="309.0" onAction="#getcolorfromplaysettings" prefHeight="39.0" prefWidth="129.0" />
+      <Button layoutX="14.0" layoutY="309.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="414.0" style="-fx-background-color: #242526;" text="Player 4 Settings : Customization for Player 4" textFill="WHITE" />
+      <ColorPicker fx:id="colorPick5" layoutX="447.0" layoutY="367.0" onAction="#getcolorfromplaysettings" prefHeight="39.0" prefWidth="129.0" />
+      <Button layoutX="14.0" layoutY="367.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="414.0" style="-fx-background-color: #242526;" text="Player 5 Settings : Customization for Player 5" textFill="WHITE" />
+      <ColorPicker fx:id="colorPick6" layoutX="447.0" layoutY="424.0" onAction="#getcolorfromplaysettings" prefHeight="39.0" prefWidth="129.0" />
+      <Button layoutX="14.0" layoutY="424.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="414.0" style="-fx-background-color: #242526;" text="Player 6 Settings : Customization for Player 6" textFill="WHITE" />
+      <ColorPicker fx:id="colorPick7" layoutX="447.0" layoutY="481.0" onAction="#getcolorfromplaysettings" prefHeight="39.0" prefWidth="129.0" />
+      <Button layoutX="14.0" layoutY="481.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="414.0" style="-fx-background-color: #242526;" text="Player 7 Settings : Customization for Player 7" textFill="WHITE" />
+      <ColorPicker fx:id="colorPick8" layoutX="447.0" layoutY="535.0" onAction="#getcolorfromplaysettings" prefHeight="39.0" prefWidth="129.0" />
+      <Button layoutX="14.0" layoutY="535.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="414.0" style="-fx-background-color: #242526;" text="Player 8 Settings : Customization for Player 8" textFill="WHITE" />
+  */

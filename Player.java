@@ -15,4 +15,12 @@ public class Player implements Serializable
 	public String getcolorasstring() {
 		return color.toString();
 	}
+	public String getnamefromplayerlist() {
+		return name;
+	}
+	public Player() {
+		this.color=color;
+		this.name=name;
+	}
+	
 }

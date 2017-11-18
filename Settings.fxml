@@ -34,20 +34,20 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <ColorPicker fx:id="colorPick" layoutX="447.0" layoutY="138.0" onAction="#getcolorfromplaysettings" onMouseDragReleased="#getcolorfromplaysettings" onMouseReleased="#getcolorfromplaysettings" onTouchPressed="#getcolorfromplaysettings" prefHeight="39.0" prefWidth="129.0" />
-      <ColorPicker layoutX="447.0" layoutY="196.0" onAction="#getcolorfromplaysettings" prefHeight="39.0" prefWidth="129.0" />
+     <ColorPicker fx:id="colorPick1" layoutX="447.0" layoutY="138.0" onAction="#getcolorfromplaysettings" onMouseDragReleased="#getcolorfromplaysettings" onMouseReleased="#getcolorfromplaysettings" onTouchPressed="#getcolorfromplaysettings" prefHeight="39.0" prefWidth="129.0" />
+      <ColorPicker fx:id="colorPick2" layoutX="447.0" layoutY="196.0" onAction="#getcolorfromplaysettings" prefHeight="39.0" prefWidth="129.0" />
       <Button layoutX="14.0" layoutY="196.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="414.0" style="-fx-background-color: #242526;" text="Player 2 Settings : Customization for Player 2" textFill="WHITE" />
-      <ColorPicker layoutX="447.0" layoutY="252.0" onAction="#getcolorfromplaysettings" prefHeight="39.0" prefWidth="129.0" />
+      <ColorPicker fx:id="colorPick3" layoutX="447.0" layoutY="252.0" onAction="#getcolorfromplaysettings" prefHeight="39.0" prefWidth="129.0" />
       <Button layoutX="14.0" layoutY="252.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="414.0" style="-fx-background-color: #242526;" text="Player 3 Settings : Customization for Player 3" textFill="WHITE" />
-      <ColorPicker layoutX="447.0" layoutY="309.0" onAction="#getcolorfromplaysettings" prefHeight="39.0" prefWidth="129.0" />
+      <ColorPicker fx:id="colorPick4" layoutX="447.0" layoutY="309.0" onAction="#getcolorfromplaysettings" prefHeight="39.0" prefWidth="129.0" />
       <Button layoutX="14.0" layoutY="309.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="414.0" style="-fx-background-color: #242526;" text="Player 4 Settings : Customization for Player 4" textFill="WHITE" />
-      <ColorPicker layoutX="447.0" layoutY="367.0" onAction="#getcolorfromplaysettings" prefHeight="39.0" prefWidth="129.0" />
+      <ColorPicker fx:id="colorPick5" layoutX="447.0" layoutY="367.0" onAction="#getcolorfromplaysettings" prefHeight="39.0" prefWidth="129.0" />
       <Button layoutX="14.0" layoutY="367.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="414.0" style="-fx-background-color: #242526;" text="Player 5 Settings : Customization for Player 5" textFill="WHITE" />
-      <ColorPicker layoutX="447.0" layoutY="424.0" onAction="#getcolorfromplaysettings" prefHeight="39.0" prefWidth="129.0" />
+      <ColorPicker fx:id="colorPick6" layoutX="447.0" layoutY="424.0" onAction="#getcolorfromplaysettings" prefHeight="39.0" prefWidth="129.0" />
       <Button layoutX="14.0" layoutY="424.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="414.0" style="-fx-background-color: #242526;" text="Player 6 Settings : Customization for Player 6" textFill="WHITE" />
-      <ColorPicker layoutX="447.0" layoutY="481.0" onAction="#getcolorfromplaysettings" prefHeight="39.0" prefWidth="129.0" />
+      <ColorPicker fx:id="colorPick7" layoutX="447.0" layoutY="481.0" onAction="#getcolorfromplaysettings" prefHeight="39.0" prefWidth="129.0" />
       <Button layoutX="14.0" layoutY="481.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="414.0" style="-fx-background-color: #242526;" text="Player 7 Settings : Customization for Player 7" textFill="WHITE" />
-      <ColorPicker layoutX="447.0" layoutY="535.0" onAction="#getcolorfromplaysettings" prefHeight="39.0" prefWidth="129.0" />
+      <ColorPicker fx:id="colorPick8" layoutX="447.0" layoutY="535.0" onAction="#getcolorfromplaysettings" prefHeight="39.0" prefWidth="129.0" />
       <Button layoutX="14.0" layoutY="535.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="414.0" style="-fx-background-color: #242526;" text="Player 8 Settings : Customization for Player 8" textFill="WHITE" />
-   </children>
+  </children>
 </AnchorPane>
