@@ -1,1 +1,11 @@
+.input {
+         -fx-prompt-text-fill: #ffffff; 
+         
+}
+.combo-box {
+    -fx-prompt-text-fill: #ffffff  ;
+}
+.combo-box-base {
+    -fx-text-fill: #ffffff;
+}
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
